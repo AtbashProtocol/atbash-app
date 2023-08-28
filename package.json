@@ -9,6 +9,9 @@
     "lint": "next lint",
     "lint:watch": "nodemon --watch src --ext ts,tsx --exec 'next lint' --signal SIGTERM"
   },
+  "engines": {
+    "node": ">=16 <=18"
+  },
   "dependencies": {
     "@next/mdx": "^13.4.19",
     "@types/node": "20.5.7",
