@@ -15,6 +15,9 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   output: 'export',
   images: { unoptimized: true },
+  experimental: {
+    appDir: true,
+  },
   webpack(config, {}) {
     // Fix Solana warning of "Module not found"
     // https://nextjs.org/docs/messages/module-not-found
