@@ -1,5 +1,6 @@
 'use client'
 import IonIcon from '@sentre/antd-ionicon'
+import { Button } from 'antd'
 
 export type WalletConnectProps = {
   onClick: () => void
@@ -7,9 +8,8 @@ export type WalletConnectProps = {
 
 export default function WalletConnect({ onClick }: WalletConnectProps) {
   return (
-    <div className="menu-item gap-2" onClick={onClick}>
-      <IonIcon name="wallet-outline" />
-      <p className="menu-option font-semibold">Connect Wallet</p>
-    </div>
+    <Button onClick={onClick} icon={<IonIcon name="wallet-outline" />}>
+      Connect Wallet
+    </Button>
   )
 }

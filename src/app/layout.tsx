@@ -6,9 +6,10 @@ import { Col, Row } from 'antd'
 import { ProposalProvider } from '@/providers/proposal.provider'
 
 import '@solana/wallet-adapter-react-ui/styles.css'
+import '@/styles/index.scss'
 
 export const metadata: Metadata = {
-  title: 'Atbash',
+  title: 'Atbash Protocol',
   description: 'The Zk Blockchain e-voting on Solana',
   viewport: {
     width: 'device-width',
@@ -39,7 +40,7 @@ export default function RootLayout({
         <WalletProvider>
           <ProposalProvider>
             <Row align="middle" justify="center">
-              <Col xs={24} sm={20} md={16}>
+              <Col xs={24} sm={20} md={16} style={{ padding: 24 }}>
                 {children}
               </Col>
             </Row>
