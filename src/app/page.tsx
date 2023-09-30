@@ -1,7 +1,8 @@
 'use client'
 import { useRouter } from 'next/navigation'
-import { Button, Col, Row } from 'antd'
+
 import Header from './header'
+import { Button, Col, Row } from 'antd'
 
 export default function Home() {
   const { push } = useRouter()

@@ -22,10 +22,19 @@ export const useAtbash = () => {
   return atbash
 }
 
+type WalletAddress = string
+
+type CandidateMetadata = {
+  name: string
+  avatar: string
+  description: string
+}
+
 type ProposalMetadata = {
   title: string
   description: string
   image: string
+  candidateMetadata: Record<WalletAddress, CandidateMetadata>
 }
 
 type InitProposalProps = {
