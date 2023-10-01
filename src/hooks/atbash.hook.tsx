@@ -24,20 +24,20 @@ export const useAtbash = () => {
 
 type WalletAddress = string
 
-type CandidateMetadata = {
+export type CandidateMetadata = {
   name: string
   avatar: string
   description: string
 }
 
-type ProposalMetadata = {
+export type ProposalMetadata = {
   title: string
   description: string
   image: string
   candidateMetadata: Record<WalletAddress, CandidateMetadata>
 }
 
-type InitProposalProps = {
+export type InitProposalProps = {
   startTime: number
   endTime: number
   voters: web3.PublicKey[]
