@@ -48,7 +48,7 @@ export type InitProposalProps = {
 export const useMetadata = (proposalAddress: string) => {
   const { metadata } = useProposalByAddress(proposalAddress)
 
-  const fetcher = useCallback(async ([metadata]: [string]) => {
+  const fetcher = useCallback(async ([metadata]: [number[]]) => {
     let cid = encode(Buffer.from(metadata))
     const fileName = toFilename(cid)
     const url =

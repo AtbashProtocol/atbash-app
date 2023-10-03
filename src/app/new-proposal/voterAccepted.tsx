@@ -34,7 +34,7 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
   const onCreateProposal = async () => {
     try {
       setLoading(true)
-      const txId = await initProposal()
+      await initProposal()
       console.log('Successfully Created Proposal')
     } catch (error) {
       console.error('Failed to Create Proposal', error)
