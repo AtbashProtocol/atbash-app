@@ -1,6 +1,51 @@
 @import './antd.scss';
 @import './typo.scss';
+@import './vars.scss';
 
 html {
   scroll-behavior: smooth;
+  font-synthesis: none;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: $WHITE;
+  background-color: $BLACK;
+}
+
+.banner{
+  position: relative;
+  background-image: url('/hero.png');
+  background-position: center;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-origin: border-box;
+  background-attachment: fixed;
+  &::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+  }
+}
+
+.btn-wallet{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: $PRIMARY;
+  padding: 0.3rem 1.2rem;
+  border-radius: 0.6rem;
 }

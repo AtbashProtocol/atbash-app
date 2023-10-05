@@ -1,5 +1,30 @@
 @import '~antd/dist/reset.css';
+@import './vars.scss';
 
 .ant-typography:not(.reset) {
   margin: 0 !important;
+}
+
+//button
+.ant-btn {
+  border: none !important;
+  box-shadow: none !important;
+}
+.ant-btn-primary {
+  background-color: $PRIMARY;
+  color: $BLACK;
+  &:hover {
+    background: $PRIMARY_HOVER !important;
+    color: $BLACK !important;
+  }
+}
+
+.ant-btn-default {
+  background-color: unset;
+  color: $WHITE;
+  border: 1px solid $WHITE !important;
+  &:hover {
+    background: unset;
+    color: $WHITE !important;
+  }
 }

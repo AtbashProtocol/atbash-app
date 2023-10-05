@@ -1,8 +1,8 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
 
-import WalletProvider from '@/providers/wallet.provider'
 import { Col, Row } from 'antd'
+import WalletProvider from '@/providers/wallet.provider'
 import { ProposalProvider } from '@/providers/proposal.provider'
 
 import '@solana/wallet-adapter-react-ui/styles.css'
@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     maximumScale: 1,
   },
   icons: {
-    icon: '/logo.jpg',
-    apple: '/logo.jpg',
+    icon: '/logo.svg',
+    apple: '/logo.svg',
   },
 }
 
@@ -40,9 +40,7 @@ export default function RootLayout({
         <WalletProvider>
           <ProposalProvider>
             <Row align="middle" justify="center">
-              <Col xs={24} sm={20} md={16} style={{ padding: 24 }}>
-                {children}
-              </Col>
+              <Col span={24}>{children}</Col>
             </Row>
           </ProposalProvider>
         </WalletProvider>
