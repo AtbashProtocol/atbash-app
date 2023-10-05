@@ -1,3 +1,44 @@
+@import './vars.scss';
+
 .caption {
-  font-size: 12px;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+}
+
+.ant-typography {
+  font-weight: 500;
+}
+
+h1.ant-typography {
+  font-weight: 900 !important;
+  font-size: 72px;
+  color: $PRIMARY;
+}
+
+h2.ant-typography {
+  font-weight: 700 !important;
+  font-size: 54px;
+  color: $PRIMARY;
+}
+
+h3.ant-typography {
+  font-weight: 600 !important;
+  font-size: 36px;
+  color: $PRIMARY;
+}
+
+h4.ant-typography {
+  font-weight: 500 !important;
+  color: $PRIMARY;
+}
+
+
+h5.ant-typography {
+  font-weight: 500 !important;
+  color: $PRIMARY;
+}
+
+
+span.ant-typography {
+  font-size: 16px;
 }

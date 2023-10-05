@@ -1,20 +1,16 @@
 'use client'
-import { useRouter } from 'next/navigation'
-
-import Header from './header'
-import { Button, Col, Row } from 'antd'
+import { Col, Row } from 'antd'
+import Banner from './banner'
+import Campaigns from './campaigns'
 
 export default function Home() {
-  const { push } = useRouter()
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[0, 24]}>
       <Col span={24}>
-        <Header />
+        <Banner />
       </Col>
       <Col span={24}>
-        <Button onClick={() => push('/new-proposal')} type="primary">
-          Create Proposal
-        </Button>
+        <Campaigns />
       </Col>
     </Row>
   )
