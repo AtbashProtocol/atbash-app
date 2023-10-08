@@ -52,7 +52,7 @@ export const useMetadata = (proposalAddress: string) => {
     let cid = encode(Buffer.from(metadata))
     const fileName = toFilename(cid)
     const url =
-      'https://pqczhpiletmsgluoxlsn.supabase.co/storage/v1/object/public/atbash/public/' +
+      'https://hnreqcvgchtokkqynbli.supabase.co/storage/v1/object/public/atbash/public/' +
       fileName
     const { data } = await axios.get(url)
     return data

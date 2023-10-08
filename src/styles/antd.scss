@@ -59,3 +59,48 @@
   color: #fff !important;
   position: relative;
 }
+
+//step
+.ant-steps{
+  .ant-steps-item-wait{
+    .ant-steps-item-icon{
+      background-color: #97928A !important;
+      .ant-steps-icon{
+        color: $BLACK !important;
+      }
+    }
+  }
+  .ant-steps-item-active{
+    .ant-steps-item-icon{
+      background-color: $PRIMARY !important;
+      border-color: $PRIMARY !important;
+      .ant-steps-icon{
+        color: $BLACK !important;
+      }
+    }
+  }
+  .ant-steps-item-content{
+    .ant-steps-item-title{
+      color: $WHITE !important;
+      &::after{
+        background-color: $WHITE !important;
+      }
+    }
+  }
+}
+
+//input
+
+.ant-input{
+  background-color: inherit;
+  color: $WHITE;
+  &:focus{
+    border-color: $PRIMARY !important;
+  }
+  &::placeholder{
+    color: $WHITE;
+  }
+  &:hover{
+    border-color: $PRIMARY !important;
+  }
+}

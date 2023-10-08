@@ -48,3 +48,14 @@ body {
   padding: 0.3rem 1.2rem;
   border-radius: 0.6rem;
 }
+
+.ant-upload-wrapper{
+  width: 100% !important;
+  height: 100% !important;
+  .ant-upload-drag{
+    height: 100% !important;
+    &:hover{
+      border-color: $PRIMARY !important;
+    }
+  }
+}

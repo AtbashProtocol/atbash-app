@@ -46,6 +46,12 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
   return (
     <Row gutter={[20, 20]} justify={'center'}>
       <Col span={24}>
+        <Typography.Title level={3}>Create Num Voter</Typography.Title>
+        <Typography.Text>
+          Enter the number of votes in the campaign
+        </Typography.Text>
+      </Col>
+      <Col span={24}>
         <SpaceVertical
           label={
             <Row>

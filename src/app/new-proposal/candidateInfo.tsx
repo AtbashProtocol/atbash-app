@@ -69,6 +69,12 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
   return (
     <Row gutter={[20, 20]} justify={'center'}>
       <Col span={24}>
+        <Typography.Title level={3}>Create Num Candidate</Typography.Title>
+        <Typography.Text>
+          Enter a list of candidates with a maximum of 8 candidate / 1 campaign
+        </Typography.Text>
+      </Col>
+      <Col span={24}>
         <SpaceVertical
           label={
             <Row>
@@ -87,64 +93,58 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
       </Col>
 
       <Col span={24}>
-        <SpaceVertical
-          label={
-            <Row>
-              <Col>
-                <Typography.Text>Fill in Candidate Info</Typography.Text>
+        <Row gutter={[12, 12]}>
+          <Col span={24}>
+            <Typography.Text>Fill in Candidate Info</Typography.Text>
+          </Col>
+          <Col span={24}>
+            <Row gutter={[12, 12]}>
+              <Col
+                span={4}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                {avtCandidate ? (
+                  <Avatar size={80} src={avtCandidate} />
+                ) : (
+                  <Upload.Dragger
+                    accept="image/png,image/jpg,image/webp"
+                    maxCount={1}
+                    onChange={(file) => onFileChangeAvatar(file)}
+                  >
+                    <IonIcon
+                      name="attach-outline"
+                      style={{ fontSize: 20, color: '#EAB15A' }}
+                    />
+                  </Upload.Dragger>
+                )}
+              </Col>
+              <Col span={20}>
+                <Row gutter={[12, 12]}>
+                  <Col span={24}>
+                    <Input
+                      value={nameCandidate}
+                      placeholder="Input Candidate Name"
+                      onChange={(e) => onChangeInfo('name', e.target.value)}
+                    />
+                  </Col>
+                  <Col span={24}>
+                    <Input
+                      value={descCandidate}
+                      placeholder="Input Candidate Description"
+                      onChange={(e) =>
+                        onChangeInfo('description', e.target.value)
+                      }
+                    />
+                  </Col>
+                </Row>
               </Col>
             </Row>
-          }
-        >
-          <Row gutter={[12, 12]}>
-            <Col
-              span={4}
-              style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              {avtCandidate ? (
-                <Avatar size={50} src={avtCandidate} />
-              ) : (
-                <Upload
-                  style={{ width: '100%' }}
-                  accept="image/png,image/jpg,image/webp"
-                  maxCount={1}
-                  onChange={(file) => onFileChangeAvatar(file)}
-                >
-                  <Button
-                    size="large"
-                    block
-                    type="dashed"
-                    icon={<IonIcon name="attach-outline" />}
-                  />
-                </Upload>
-              )}
-            </Col>
-            <Col span={20}>
-              <Row gutter={[12, 12]}>
-                <Col span={24}>
-                  <Input
-                    value={nameCandidate}
-                    placeholder="Input Candidate Name"
-                    onChange={(e) => onChangeInfo('name', e.target.value)}
-                  />
-                </Col>
-                <Col span={24}>
-                  <Input
-                    value={descCandidate}
-                    placeholder="Input Candidate Description"
-                    onChange={(e) =>
-                      onChangeInfo('description', e.target.value)
-                    }
-                  />
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-        </SpaceVertical>
+          </Col>
+        </Row>
       </Col>
       <Col span={24} style={{ textAlign: 'right' }}>
         <Button onClick={onNewCandidate} type="primary" size="large">
@@ -193,7 +193,7 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
       <Col span={24}>
         <Row gutter={[12, 12]}>
           <Col span={12}>
-            <Button onClick={onBack} block type="dashed" size="large">
+            <Button onClick={onBack} block size="large">
               Back
             </Button>
           </Col>

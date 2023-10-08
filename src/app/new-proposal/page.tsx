@@ -2,10 +2,12 @@
 import { useMemo, useState } from 'react'
 import { createGlobalState } from 'react-use'
 
-import { Card, Col, Row, Steps } from 'antd'
+import { Breadcrumb, Card, Col, Row, Steps } from 'antd'
 import ProposalInfo from './proposalInfo'
 import CandidateInfo from './candidateInfo'
 import VoterAccepted from './voterAccepted'
+import Header from '@/components/header'
+import IonIcon from '@sentre/antd-ionicon'
 
 import { ProposalMetadata, InitProposalProps } from '@/hooks/atbash.hook'
 
@@ -58,20 +60,58 @@ export default function NewProposal() {
   }, [step])
 
   return (
-    <Row justify="center">
-      <Col xs={24} sm={20} md={18} lg={16}>
-        <Card style={{ marginBottom: 24 }}>
-          <Row gutter={[32, 32]}>
-            <Col span={24}>
-              <Steps size="small" current={step} direction="horizontal">
-                <Steps.Step title="Proposal Info" />
-                <Steps.Step title="Candidate Info" />
-                <Steps.Step title="Voters Accepted" />
-              </Steps>
-            </Col>
-            <Col span={24}>{processInit}</Col>
-          </Row>
-        </Card>
+    <Row justify="center" align="middle">
+      <Col span={24}>
+        <Row className="banner" align="middle" justify="center">
+          <Col xs={24} md={20} style={{ padding: 24 }}>
+            <Row gutter={[0, 116]} align="middle" justify="center">
+              <Col span={24}>
+                <Header />
+              </Col>
+              <Col span={24} />
+            </Row>
+          </Col>
+        </Row>
+      </Col>
+      <Col xs={24} md={20} style={{ padding: 24, top: -120 }}>
+        <Row gutter={[0, 12]} align="middle" justify="center">
+          <Col span={16}>
+            <Breadcrumb
+              items={[
+                {
+                  href: '/',
+                  title: (
+                    <>
+                      <IonIcon name="home-outline" />
+                      <span>Proposal Dashboard</span>
+                    </>
+                  ),
+                },
+                {
+                  title: (
+                    <span style={{ color: '#EAB15A' }}>
+                      Create New Proposal
+                    </span>
+                  ),
+                },
+              ]}
+            />
+          </Col>
+          <Col span={16}>
+            <Card className="card-info">
+              <Row gutter={[32, 32]}>
+                <Col span={24}>
+                  <Steps size="small" current={step} direction="horizontal">
+                    <Steps.Step title="Proposal Info" />
+                    <Steps.Step title="Candidate Info" />
+                    <Steps.Step title="Voters Accepted" />
+                  </Steps>
+                </Col>
+                <Col span={24}>{processInit}</Col>
+              </Row>
+            </Card>
+          </Col>
+        </Row>
       </Col>
     </Row>
   )

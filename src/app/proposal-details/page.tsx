@@ -15,7 +15,7 @@ export default function ProposalDetails() {
     <Row gutter={[0, 12]} justify="center">
       <Col span={24}>
         <Row className="banner" align="middle" justify="center">
-          <Col xs={24} md={20} style={{ position: 'relative', padding: 24 }}>
+          <Col xs={24} md={20} style={{ padding: 24 }}>
             <Row gutter={[0, 116]} align="middle" justify="center">
               <Col span={24}>
                 <Header />
@@ -26,7 +26,7 @@ export default function ProposalDetails() {
         </Row>
       </Col>
 
-      <Col xs={24} md={20} span={24} style={{ padding: 24, top: -120 }}>
+      <Col xs={24} md={20} style={{ padding: 24, top: -120 }}>
         <Row gutter={[0, 12]}>
           <Col span={24}>
             <Breadcrumb

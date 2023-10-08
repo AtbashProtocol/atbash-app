@@ -66,17 +66,23 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
   }
 
   return (
-    <Row gutter={[20, 20]}>
+    <Row gutter={[20, 20]} justify="center" align="middle">
+      <Col span={24}>
+        <Typography.Title level={3}>Create Campaign</Typography.Title>
+        <Typography.Text>
+          Create a campaign name and description below
+        </Typography.Text>
+      </Col>
       {/* Title */}
       <Col span={24}>
         <SpaceVertical
           label={
             <Row justify="space-between">
               <Col>
-                <Typography.Text>Title Proposal</Typography.Text>
+                <Typography.Text>Title</Typography.Text>
               </Col>
               <Col>
-                <Typography.Text type="secondary">
+                <Typography.Text>
                   <span style={{ color: title.length > 32 ? 'red' : '' }}>
                     {title.length}
                   </span>
@@ -103,7 +109,7 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
                 <Typography.Text>Description</Typography.Text>
               </Col>
               <Col>
-                <Typography.Text type="secondary">
+                <Typography.Text>
                   <span
                     style={{ color: description.length > 250 ? 'red' : '' }}
                   >
@@ -118,7 +124,7 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
           <Input.TextArea
             value={description}
             rows={4}
-            placeholder="Summarize about your proposal..."
+            placeholder="Summarize about your campaign..."
             onChange={(e) => onChangeInfo('description', e.target.value)}
           />
         </SpaceVertical>
@@ -126,50 +132,48 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
 
       {/* Upload image */}
       <Col span={24}>
-        <SpaceVertical
-          label={
-            <Row>
-              <Col>
-                <Typography.Text>Cover Photo Proposal</Typography.Text>
-              </Col>
-            </Row>
-          }
-        >
-          {!image ? (
-            <Upload.Dragger
-              accept="image/png,image/jpg,image/webp"
-              onChange={onFileChangeProposal}
-              className="cover-photo"
-            >
-              <Space direction="vertical">
-                <IonIcon style={{ fontSize: 40 }} name="cloud-upload-outline" />
-                <Space direction="vertical" size={0}>
-                  <Typography.Text>
-                    Click or drag image to upload
-                  </Typography.Text>
+        <Row gutter={[12, 12]}>
+          <Col span={24}>
+            <Typography.Text>Cover Photo</Typography.Text>
+          </Col>
+          <Col span={24} style={{ minHeight: 240 }}>
+            {!image ? (
+              <Upload.Dragger
+                accept="image/png,image/jpg,image/webp"
+                onChange={onFileChangeProposal}
+              >
+                <Space direction="vertical">
+                  <IonIcon
+                    style={{ fontSize: 40, color: '#EAB15A' }}
+                    name="cloud-upload-outline"
+                  />
+                  <Space direction="vertical" size={0}>
+                    <Typography.Text>
+                      Click or drag image to upload
+                    </Typography.Text>
+                  </Space>
                 </Space>
-              </Space>
-            </Upload.Dragger>
-          ) : (
-            <Image
-              src={image}
-              alt=""
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center',
-                aspectRatio: '16/9',
-              }}
-              className="cover-photo"
-            />
-          )}
-        </SpaceVertical>
+              </Upload.Dragger>
+            ) : (
+              <Image
+                src={image}
+                alt=""
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  aspectRatio: '16/9',
+                }}
+              />
+            )}
+          </Col>
+        </Row>
       </Col>
 
       {/* Timeline */}
       <Col span={12}>
-        <SpaceVertical label="Start Time">
+        <SpaceVertical label={<Typography.Text>Start Time</Typography.Text>}>
           <DatePicker
             placeholder="Select time"
             suffixIcon={<IonIcon name="time-outline" />}
@@ -184,7 +188,7 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
         </SpaceVertical>
       </Col>
       <Col span={12}>
-        <SpaceVertical label="End Time">
+        <SpaceVertical label={<Typography.Text>End Time</Typography.Text>}>
           <DatePicker
             placeholder="Select time"
             suffixIcon={<IonIcon name="time-outline" />}
@@ -198,12 +202,13 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
           />
         </SpaceVertical>
       </Col>
+      <Col span={24} />
 
       {/* Action */}
       <Col span={24} style={{ marginTop: 12 }}>
         <Row gutter={[12, 12]}>
           <Col span={12}>
-            <Button onClick={() => push('/')} block type="dashed" size="large">
+            <Button onClick={() => push('/')} block size="large">
               Cancel
             </Button>
           </Col>
