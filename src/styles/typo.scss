@@ -7,29 +7,31 @@
 
 .ant-typography {
   font-weight: 500;
+  color: $WHITE;
 }
 
 h1.ant-typography {
   font-weight: 900 !important;
   font-size: 72px;
-  color: $PRIMARY;
+  color: $WHITE;
 }
 
 h2.ant-typography {
   font-weight: 700 !important;
   font-size: 54px;
-  color: $PRIMARY;
+  color: $WHITE;
 }
 
 h3.ant-typography {
   font-weight: 600 !important;
   font-size: 36px;
-  color: $PRIMARY;
+  color: $WHITE;
 }
 
 h4.ant-typography {
   font-weight: 500 !important;
-  color: $PRIMARY;
+  font-size: 24px;
+  color: $WHITE;
 }
 
 

@@ -1,4 +1,3 @@
-'use client'
 import { Col, Row, Image, Typography, Divider } from 'antd'
 import Header from '@/components/header'
 
@@ -11,7 +10,7 @@ export default function Banner() {
             <Header />
           </Col>
           <Col span={20} style={{ textAlign: 'center' }}>
-            <Typography.Title>
+            <Typography.Title style={{ color: '#EAB15A' }}>
               Cast Your Vote, Guard Your Privacy
             </Typography.Title>
             <Divider dashed style={{ borderColor: '#EAB15A' }} />
@@ -38,7 +37,7 @@ export default function Banner() {
                 </Row>
               </Col>
               <Col>
-                <Image alt="" src="/icon-pyramid.svg" />
+                <Image alt="" src="/icon-pyramid.svg" preview={false} />
               </Col>
             </Row>
           </Col>
