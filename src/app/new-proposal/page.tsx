@@ -38,7 +38,7 @@ const PROPOSAL_INFO = 0
 const CANDIDATE_INFO = 1
 const VOTER_ACCEPTED = 2
 
-export default function InitProposal() {
+export default function NewProposal() {
   const [step, setStep] = useState(PROPOSAL_INFO)
 
   const processInit = useMemo(() => {

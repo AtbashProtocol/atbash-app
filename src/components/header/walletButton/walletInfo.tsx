@@ -3,12 +3,12 @@ import { useCallback, useMemo, useState } from 'react'
 import { Wallet } from '@solana/wallet-adapter-react'
 import copy from 'copy-to-clipboard'
 
+import CopyToClipboard from 'react-copy-to-clipboard'
+import IonIcon from '@sentre/antd-ionicon'
 import { WalletIcon } from '@solana/wallet-adapter-react-ui'
+import { Button, Space, Tooltip, Typography } from 'antd'
 
 import { asyncWait, shortenAddress } from '@/helpers/utils'
-
-import { Button, Space, Typography } from 'antd'
-import IonIcon from '@sentre/antd-ionicon'
 
 export type WalletInfoProps = {
   wallet: Wallet
@@ -36,7 +36,18 @@ export default function WalletInfo({
   return (
     <Space className="btn-wallet">
       <WalletIcon style={{ width: 24, height: 24 }} wallet={wallet} />
-      <Typography.Text>{shortenAddress(address)}</Typography.Text>
+      <Typography.Text style={{ color: 'black' }}>
+        {shortenAddress(address)}
+      </Typography.Text>
+      <Tooltip title="Copied" open={copied}>
+        <CopyToClipboard text={address}>
+          <Button
+            type="text"
+            icon={<IonIcon name="copy-outline" />}
+            onClick={onCopy}
+          />
+        </CopyToClipboard>
+      </Tooltip>
       <Button
         type="text"
         icon={<IonIcon name="log-out-outline" />}
