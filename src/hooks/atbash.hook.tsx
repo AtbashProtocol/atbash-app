@@ -52,7 +52,7 @@ export const useMetadata = (proposalAddress: string) => {
     let cid = encode(Buffer.from(metadata))
     const fileName = toFilename(cid)
     const url =
-      'https://pqczhpiletmsgluoxlsn.supabase.co/storage/v1/object/public/storage-file/public/' +
+      'https://pqczhpiletmsgluoxlsn.supabase.co/storage/v1/object/public/atbash/public/' +
       fileName
     const { data } = await axios.get(url)
     return data
@@ -91,9 +91,10 @@ export const useInitProposal = (props: InitProposalProps) => {
 
 export const useVote = (proposalAddress: string, voteFor: string) => {
   const metadata = useMetadata(proposalAddress)
+  const { commitment } = useProposalByAddress(proposalAddress)
   const atbash = useAtbash()
-
   const { publicKey } = useWallet()
+
   const onVote = useCallback(async () => {
     const merkleRoot = metadata.merkleRoot
     const merkle = MerkleDistributor.fromBuffer(Buffer.from(merkleRoot))
@@ -107,9 +108,17 @@ export const useVote = (proposalAddress: string, voteFor: string) => {
       proof,
       proposalAddress,
       votFor: new web3.PublicKey(voteFor),
+      commitment: commitment.toNumber(),
     })
     return txId
-  }, [atbash, metadata.merkleRoot, proposalAddress, publicKey, voteFor])
+  }, [
+    atbash,
+    commitment,
+    metadata.merkleRoot,
+    proposalAddress,
+    publicKey,
+    voteFor,
+  ])
 
   return onVote
 }

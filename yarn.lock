@@ -2279,10 +2279,10 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-atbash-protocol@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/atbash-protocol/-/atbash-protocol-1.1.1.tgz#554d955cf515cae132d0cd4fc378e3534db2a563"
-  integrity sha512-liruJRlVixv+4EnOgfin0jZul+01WRxT32B9DC0Z9Fja0RAU2F7hBIjoyb5ckzUOZrx2fiwUlBntBmsbq3YARQ==
+atbash-protocol@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/atbash-protocol/-/atbash-protocol-1.2.0.tgz#7d36aabd3c1b62fc2b151bea96df59c913e3df4d"
+  integrity sha512-jXFa3j3TqZDwPPg+MZM7hoFpz9H7ZD7aoRUMZKPxMQB1W27/hB7XiDQHR9qIq8rSXwIkMZrw+1JBjZxnALieoQ==
   dependencies:
     "@coral-xyz/anchor" "^0.28.0"
     "@coral-xyz/spl-token" "^0.28.1-beta.2"
@@ -2908,7 +2908,7 @@ date-fns@^2.30.0:
   dependencies:
     "@babel/runtime" "^7.21.0"
 
-dayjs@^1.11.1:
+dayjs@^1.11.1, dayjs@^1.11.10:
   version "1.11.10"
   resolved "https://registry.yarnpkg.com/dayjs/-/dayjs-1.11.10.tgz#68acea85317a6e164457d6d6947564029a6a16a0"
   integrity sha512-vjAczensTgRcqDERK0SR2XMwsF/tSvnvlv6VcF2GIhg6Sx4yOIt/irsr1RDJsKiIyBzJDpCoXiWWq28MqH2cnQ==
