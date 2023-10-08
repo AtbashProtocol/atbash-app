@@ -1,0 +1,36 @@
+.campaigns-card {
+    position: relative !important;
+    border-radius: 24px;
+    cursor: pointer;
+    .campaigns-card-tags{
+      position: absolute;
+      padding: 24px;
+      top: 24px;
+      right: 0;
+      z-index: 1;
+    }
+    .campaigns-card-header {
+      .ant-image {
+        width: 100% !important;
+        height: 100% !important;
+        top: 24px;
+        img {
+          border-radius: 24px 24px 0 0 !important;
+          height: 100% !important;
+        }
+      }
+    }
+    .campaigns-card-body {
+      border-radius: 24px ;
+      min-height: 200px ;
+      background: #EEE5D8 ;
+      .owner {
+        padding: 8px;
+        background: rgba(8, 20, 56, 0.1);
+        border-radius: 50%;
+        font-size: 24px;
+        color: #081438 !important;
+      }
+    }
+  }
+  

@@ -79,8 +79,8 @@ export const useInitProposal = (props: InitProposalProps) => {
     const { txId } = await atbash.initializeProposal({
       candidates,
       voters,
-      endTime: startTime / 1000,
-      startTime: endTime / 1000,
+      endTime: endTime,
+      startTime: startTime,
       metadata: decode(cid),
     })
     return txId
@@ -97,7 +97,10 @@ export const useVote = (proposalAddress: string, voteFor: string) => {
 
   const onVote = useCallback(async () => {
     const merkleRoot = metadata.merkleRoot
-    const merkle = MerkleDistributor.fromBuffer(Buffer.from(merkleRoot))
+    console.log('merkleRoot', merkleRoot)
+
+    const merkle = MerkleDistributor.fromBuffer(merkleRoot)
+    console.log('merkle', merkle)
     const voter = merkle.voters.find(
       ({ authority }) => publicKey && authority.equals(publicKey),
     )
