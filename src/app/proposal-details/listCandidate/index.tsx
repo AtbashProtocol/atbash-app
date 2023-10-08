@@ -13,7 +13,7 @@ type CandidateCardProps = {
 export default function ListCandidate({ proposalAddress }: CandidateCardProps) {
   const metadata = useMetadata(proposalAddress)
 
-  if (!metadata) return <Fragment></Fragment>
+  if (!metadata) return <Fragment />
   const candidates = metadata.proposalMetadata.candidateMetadata
 
   return (

@@ -29,7 +29,7 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
   const now = new Date().getTime()
   const isEnded = Number(endDate) <= now
 
-  if (!metadata) return <Fragment></Fragment>
+  if (!metadata) return <Fragment />
 
   return (
     <Link href={`/proposal-details?proposalAddress=${proposalAddress}`}>
