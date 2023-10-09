@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation'
 import ProposalCard from './proposalCard'
 
 import { useProposals } from '@/providers/proposal.provider'
-import { useMetadata } from '@/hooks/atbash.hook'
+
 import './index.scss'
 
 enum FilterCampaigns {
@@ -64,13 +64,11 @@ export default function ListProposal() {
           </Col>
         </Row>
       </Col>
-      {Object.keys(proposals).map((proposalAddress) => {
-        return (
-          <Col span={8} key={proposalAddress}>
-            <ProposalCard proposalAddress={proposalAddress} />
-          </Col>
-        )
-      })}
+      {Object.keys(proposals).map((proposalAddress) => (
+        <Col xs={24} sm={12} md={12} lg={8} key={proposalAddress}>
+          <ProposalCard proposalAddress={proposalAddress} />
+        </Col>
+      ))}
     </Row>
   )
 }

@@ -1,4 +1,4 @@
-import type { ThemeConfig } from 'antd'
+import { theme, type ThemeConfig } from 'antd'
 
 export const COLORS = {
   PRIMARY: '#EAB15A',
@@ -30,8 +30,9 @@ export const COLORS = {
 }
 
 export const config: ThemeConfig = {
+  algorithm: theme.darkAlgorithm,
   token: {
-    colorText: COLORS.BLACK,
+    colorText: COLORS.WHITE,
     colorPrimary: COLORS.PRIMARY,
     colorPrimaryHover: COLORS.DARK_YELLOW,
     colorError: COLORS.RED,
@@ -54,7 +55,7 @@ export const config: ThemeConfig = {
       horizontalItemPadding: '4px 0px',
     },
     Card: {
-      borderRadiusLG: 24,
+      borderRadiusLG: 8,
       colorBorder: COLORS.TRANSPARENT,
       boxShadow: COLORS.NONE,
       lineWidth: 1.5,

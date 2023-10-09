@@ -2,12 +2,12 @@
 
 import Island from '@/components/island'
 import WalletButton from './walletButton'
-import { Button, Col, Image, Row, Spin, Typography } from 'antd'
+import { Button, Col, Image, Row, Space, Spin, Typography } from 'antd'
 
 export default function Header() {
   return (
     <Row gutter={[24, 24]}>
-      <Col>
+      <Col flex="auto">
         <Image
           preview={false}
           height={50}
@@ -15,18 +15,13 @@ export default function Header() {
           src="/brand.svg"
         />
       </Col>
-      <Col flex="auto" />
       <Col>
-        <Row align="middle" gutter={[16, 16]}>
-          <Col>
-            <Button size="large">How to vote</Button>
-          </Col>
-          <Col>
-            <Island Loading={Spin}>
-              <WalletButton />
-            </Island>
-          </Col>
-        </Row>
+        <Space size={16}>
+          <Button size="large">How to vote</Button>
+          <Island Loading={Spin}>
+            <WalletButton />
+          </Island>
+        </Space>
       </Col>
     </Row>
   )

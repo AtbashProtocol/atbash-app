@@ -8,6 +8,7 @@ import { Card, Col, Row, Button, Typography, Tag, Divider } from 'antd'
 
 import { useMetadata } from '@/hooks/atbash.hook'
 import { useProposalByAddress } from '@/providers/proposal.provider'
+import EndIn from '../listProposal/endIn'
 
 type ProposalInfoProps = {
   proposalAddress: string
@@ -57,17 +58,14 @@ export default function ProposalInfo({ proposalAddress }: ProposalInfoProps) {
               <Divider style={{ borderColor: 'white' }} type="vertical" />
             </Col>
             <Col>
-              <Typography.Text style={{ fontSize: '0.8rem' }}>
-                Voting period: {dayjs(Number(startDate)).format('D/MM/YYYY')} -{' '}
-                {dayjs(Number(endDate)).format('D/MM/YYYY')}
-              </Typography.Text>
+              <EndIn proposalAddress={proposalAddress} />
             </Col>
           </Row>
         </Col>
         <Col span={24}>
           <Row gutter={[0, 12]}>
             <Col span={24}>
-              <Typography.Text>Description</Typography.Text>
+              <Typography.Title level={4}>Description</Typography.Title>
             </Col>
             <Col span={24}>
               {metadata && metadata.proposalMetadata.description}

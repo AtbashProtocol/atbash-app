@@ -4,7 +4,7 @@ import Header from '@/components/header'
 export default function Banner() {
   return (
     <Row className="banner" align="middle" justify="center">
-      <Col xs={24} md={20} style={{ position: 'relative', padding: 24 }}>
+      <Col sm={24} lg={22} style={{ position: 'relative', padding: '24px 0' }}>
         <Row gutter={[0, 72]} align="middle" justify="center">
           <Col span={24}>
             <Header />
