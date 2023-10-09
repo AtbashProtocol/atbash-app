@@ -13,6 +13,7 @@ import { useProposalByAddress } from '@/providers/proposal.provider'
 
 export const useAtbash = () => {
   const provider = useAnchorProvider()
+  provider.opts.skipPreflight = true
 
   const atbash = useMemo(
     () => new Atbash(provider, solConfig.atbashAddress),
@@ -68,7 +69,7 @@ export const useInitProposal = (props: InitProposalProps) => {
   const initProposal = useCallback(async () => {
     const { startTime, endTime, candidates, voters, proposalMetadata } = props
     const merkleDistributor = atbash.getMerkleDistributor(voters)
-    const merkleRoot = merkleDistributor.deriveMerkleRoot()
+    const merkleRoot = merkleDistributor.toBuffer()
     const blob = [
       new Blob([JSON.stringify({ proposalMetadata, merkleRoot }, null, 2)], {
         type: 'application/json',
@@ -79,8 +80,8 @@ export const useInitProposal = (props: InitProposalProps) => {
     const { txId } = await atbash.initializeProposal({
       candidates,
       voters,
-      endTime: endTime,
-      startTime: startTime,
+      endTime: endTime / 1000,
+      startTime: startTime / 1000,
       metadata: decode(cid),
     })
     return txId
@@ -97,7 +98,7 @@ export const useVote = (proposalAddress: string, voteFor: string) => {
 
   const onVote = useCallback(async () => {
     const merkleRoot = metadata.merkleRoot
-    const merkle = MerkleDistributor.fromBuffer(Buffer.from(merkleRoot))
+    const merkle = MerkleDistributor.fromBuffer(Buffer.from(merkleRoot.data))
     const voter = merkle.voters.find(
       ({ authority }) => publicKey && authority.equals(publicKey),
     )

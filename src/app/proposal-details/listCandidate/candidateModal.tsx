@@ -1,7 +1,7 @@
 'use client'
-import { useState } from 'react'
+import { Fragment, useState } from 'react'
 
-import { Button, Image, Col, Row, Typography } from 'antd'
+import { Button, Image, Col, Row, Typography, message } from 'antd'
 import { useVote } from '@/hooks/atbash.hook'
 
 type CandidateModalProps = {
@@ -28,8 +28,8 @@ export default function CandidateModal({
       setLoading(true)
       await onVote()
       console.log('Successfully Created Proposal')
-    } catch (error) {
-      console.error('Failed to Create Proposal', error)
+    } catch (er: any) {
+      message.error(er.message)
     } finally {
       setLoading(false)
     }
