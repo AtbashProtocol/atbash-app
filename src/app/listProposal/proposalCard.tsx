@@ -4,12 +4,13 @@ import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useWallet } from '@solana/wallet-adapter-react'
 
-import { Col, Row, Image, Card, Typography, Divider } from 'antd'
+import { Col, Row, Image, Card, Typography, Divider, Space } from 'antd'
 import StatusTag from '@/components/statusTag'
 
 import { useMetadata } from '@/hooks/atbash.hook'
 import { useProposalByAddress } from '@/providers/proposal.provider'
 import EndIn from './endIn'
+import { useReceiptsByProposalAddress } from '@/providers/receipt.provider'
 
 type CampaignCardProps = {
   proposalAddress: string
@@ -20,9 +21,9 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
     proposalMetadata: { title: '', description: '', image: '' },
   }
   const { wallet } = useWallet()
-  const { authority, startDate, endDate } =
-    useProposalByAddress(proposalAddress)
+  const { authority, endDate } = useProposalByAddress(proposalAddress)
   const endTime = endDate.toNumber() * 1000
+  const receipt = useReceiptsByProposalAddress(proposalAddress)
 
   const address = useMemo(
     () => (wallet && wallet.adapter.publicKey?.toBase58()) || '',
@@ -66,7 +67,10 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
               <Col span={24}>
                 <Row align="middle">
                   <Col flex="auto">
-                    <StatusTag isOwner={isOwner} />
+                    <Space size={4}>
+                      <StatusTag isOwner={isOwner} />
+                      {receipt && <StatusTag isVoted />}
+                    </Space>
                   </Col>
                   <Col>
                     <EndIn proposalAddress={proposalAddress} />

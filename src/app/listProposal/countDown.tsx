@@ -57,7 +57,6 @@ const TimeCountDown = ({ endTime }: TimeCountDownProps) => {
     return () => clearInterval(interval)
   }, [updateCountDown])
 
-  if (!endTime) return <Typography.Text>Unlimited</Typography.Text>
   if (endTime < currentTime)
     return (
       <TimeTag>

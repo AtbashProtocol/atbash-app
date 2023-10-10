@@ -24,19 +24,9 @@ export default function CandidateCard({
   const [visible, setVisible] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  // const { publicKey } = useWallet()
   const { proposalMetadata } = useMetadata(proposalAddress)
   const candidates = proposalMetadata?.candidateMetadata
   const { avatar, name, description } = candidates[candidateAddress]
-
-  // const voter = useMemo(() => {
-  //   if(!merkleRoot) return
-  //   const merkle = MerkleDistributor.fromBuffer(Buffer.from(merkleRoot))
-  //   const voter = merkle.voters.find(
-  //     ({ authority }) => publicKey && authority.equals(publicKey),
-  //   )
-  //   return voter
-  // }, [merkleRoot, publicKey])
 
   const onCopy = useCallback(async () => {
     copy(candidateAddress)

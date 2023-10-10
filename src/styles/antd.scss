@@ -35,54 +35,53 @@
 }
 
 .card-info {
-  background-color: #2D2616 !important    ;
+  background-color: #2d2616 !important    ;
   box-shadow: 0px 4px 60px rgba(20, 244, 250, 0.12) !important;
-  border: 1px solid #EAB15A !important;
+  border: 1px solid #eab15a !important;
   backdrop-filter: blur(96px) !important;
   color: #fff !important;
   position: relative;
 }
 
-
 //breadcrumb
 .ant-breadcrumb-link,
-.ant-breadcrumb-separator{
+.ant-breadcrumb-separator {
   color: $WHITE !important;
 }
 
 //modal
-.ant-modal-content{
-  background-color: #2D2616 !important;
+.ant-modal-content {
+  background-color: #2d2616 !important;
   box-shadow: 0px 4px 60px rgba(20, 244, 250, 0.12) !important;
-  border: 1px solid #EAB15A !important;
+  border: 1px solid #eab15a !important;
   backdrop-filter: blur(96px) !important;
   color: #fff !important;
   position: relative;
 }
 
 //step
-.ant-steps{
-  .ant-steps-item-wait{
-    .ant-steps-item-icon{
-      background-color: #97928A !important;
-      .ant-steps-icon{
+.ant-steps {
+  .ant-steps-item-wait {
+    .ant-steps-item-icon {
+      background-color: #97928a !important;
+      .ant-steps-icon {
         color: $BLACK !important;
       }
     }
   }
-  .ant-steps-item-active{
-    .ant-steps-item-icon{
+  .ant-steps-item-active {
+    .ant-steps-item-icon {
       background-color: $PRIMARY !important;
       border-color: $PRIMARY !important;
-      .ant-steps-icon{
+      .ant-steps-icon {
         color: $BLACK !important;
       }
     }
   }
-  .ant-steps-item-content{
-    .ant-steps-item-title{
+  .ant-steps-item-content {
+    .ant-steps-item-title {
       color: $WHITE !important;
-      &::after{
+      &::after {
         background-color: $WHITE !important;
       }
     }
@@ -91,16 +90,28 @@
 
 //input
 
-.ant-input{
+.ant-input {
   background-color: inherit;
   color: $WHITE;
-  &:focus{
+  &:focus {
     border-color: $PRIMARY !important;
   }
-  &::placeholder{
+  &::placeholder {
     color: $WHITE;
   }
-  &:hover{
+  &:hover {
     border-color: $PRIMARY !important;
   }
+}
+
+.ant-steps .ant-steps-item-wait .ant-steps-item-icon {
+  background-color: #eab15a !important;
+}
+
+.ant-steps-item-container > .ant-steps-item-tail::after {
+  background-color: #fff !important;
+}
+
+.ant-steps-item-description {
+  color: #888 !important;
 }

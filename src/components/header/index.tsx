@@ -1,8 +1,9 @@
 'use client'
 
+import { Col, Image, Row, Space, Spin } from 'antd'
 import Island from '@/components/island'
 import WalletButton from './walletButton'
-import { Button, Col, Image, Row, Space, Spin, Typography } from 'antd'
+import Guideline from '@/app/guideline'
 
 export default function Header() {
   return (
@@ -17,7 +18,7 @@ export default function Header() {
       </Col>
       <Col>
         <Space size={16}>
-          <Button size="large">How to vote</Button>
+          <Guideline />
           <Island Loading={Spin}>
             <WalletButton />
           </Island>

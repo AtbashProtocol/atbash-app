@@ -22,7 +22,7 @@ export default function StatusTag({
 }: StatusTagProps) {
   const state = useMemo(() => {
     if (isOwner) return { text: 'Owner', color: '#7291e333' }
-    if (isVoted) return { text: 'Can Vote', color: 'green' }
+    if (isVoted) return { text: 'Voted', color: 'green' }
     if (isLive) return { text: 'Live', color: 'volcano' }
     if (isEnded) return { text: 'Ended', color: '#FF8460' }
     if (isGetResult) return { text: 'Need to Get Result', color: '#eab15a' }
@@ -33,7 +33,6 @@ export default function StatusTag({
     <Tag
       color={state.color}
       style={{
-        marginInlineEnd: 0,
         textAlign: 'center',
         color: `${color}`,
         padding: '0 16px',
