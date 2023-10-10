@@ -4,11 +4,21 @@ import { web3 } from '@coral-xyz/anchor'
 import { UploadChangeParam } from 'antd/es/upload'
 
 import IonIcon from '@sentre/antd-ionicon'
-import { Button, Col, Input, Row, Typography, Upload, Avatar } from 'antd'
+import {
+  Button,
+  Col,
+  Input,
+  Row,
+  Typography,
+  Upload,
+  Avatar,
+  Space,
+} from 'antd'
 import SpaceVertical from './spaceVertical'
+import CandidateTable from './candidateTable'
 
 import { useGlobalProposal } from './page'
-import { fileToBase64 } from '@/helpers/utils'
+import { fileToBase64, isAddress } from '@/helpers/utils'
 
 type CandidateInfoProp = {
   onNext: () => void
@@ -20,13 +30,13 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
   const [nameCandidate, setNameCandidate] = useState('')
   const [descCandidate, setDescCandidate] = useState('')
   const [avtCandidate, setAvtCandidate] = useState('')
+  const [walletError, setWalletError] = useState('')
   const [proposalData, setProposalData] = useGlobalProposal()
 
-  const candidate = proposalData.proposalMetadata.candidateMetadata
+  const candidates = proposalData.proposalMetadata.candidateMetadata
   const candidatesAddr = proposalData.candidates
 
   const onChangeInfo = (keyCandidate: string, value: string) => {
-    if (!address) return
     if (keyCandidate === 'name') setNameCandidate(value)
     if (keyCandidate === 'description') setDescCandidate(value)
   }
@@ -38,16 +48,16 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
   }
 
   const onChangeAvatar = async (imgBase64: string) => {
-    if (!address) return
     setAvtCandidate(imgBase64)
   }
   const onNewCandidate = () => {
+    if (!isAddress(address)) return setWalletError('Wrong wallet address')
     const nextProposalMetadata = {
       ...proposalData.proposalMetadata,
       candidateMetadata: {
-        ...candidate,
+        ...candidates,
         [address]: {
-          ...candidate[address],
+          ...candidates[address],
           name: nameCandidate,
           description: descCandidate,
           avatar: avtCandidate,
@@ -84,11 +94,26 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
             </Row>
           }
         >
-          <Input
-            placeholder="Input Address Candidate"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
+          <Row gutter={[12, 8]}>
+            <Col span={24}>
+              <Input
+                placeholder="Input Address Candidate"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              />
+            </Col>
+            {walletError && (
+              <Col span={24}>
+                <Space>
+                  <IonIcon
+                    style={{ color: '#f2323f' }}
+                    name="warning-outline"
+                  />
+                  <Typography.Text type="danger">{walletError}</Typography.Text>
+                </Space>
+              </Col>
+            )}
+          </Row>
         </SpaceVertical>
       </Col>
 
@@ -151,42 +176,11 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
           Add
         </Button>
       </Col>
+
+      {/* Table Candidate */}
       <Col span={24}>
-        <Row gutter={[16, 8]} align="middle" style={{ padding: 8 }}>
-          <Col span={4}>
-            <Typography.Text>No.</Typography.Text>
-          </Col>
-          <Col span={4}>
-            <Typography.Text>Avatar</Typography.Text>
-          </Col>
-          <Col span={4}>
-            <Typography.Text>Name</Typography.Text>
-          </Col>
-          <Col span={12}>
-            <Typography.Text>Description</Typography.Text>
-          </Col>
-        </Row>
+        <CandidateTable candidates={candidates} />
       </Col>
-      {Object.values(candidate).map(({ avatar, name, description }, index) => {
-        return (
-          <Col span={24} key={name}>
-            <Row gutter={[16, 8]} align="middle" style={{ padding: 8 }}>
-              <Col span={4}>
-                <Typography.Text>{index + 1}.</Typography.Text>
-              </Col>
-              <Col span={4}>
-                <Avatar size={40} src={avatar} />
-              </Col>
-              <Col span={4}>
-                <Typography.Text>{name}</Typography.Text>
-              </Col>
-              <Col span={12}>
-                <Typography.Text>{description}</Typography.Text>
-              </Col>
-            </Row>
-          </Col>
-        )
-      })}
 
       {/* Action */}
       <Col span={24} />
@@ -198,7 +192,13 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
             </Button>
           </Col>
           <Col span={12}>
-            <Button onClick={onNext} block type="primary" size="large">
+            <Button
+              disabled={Object.keys(candidates).length < 2}
+              onClick={onNext}
+              block
+              type="primary"
+              size="large"
+            >
               Continue
             </Button>
           </Col>
