@@ -36,6 +36,7 @@ export default function StatusTag({
         marginInlineEnd: 0,
         textAlign: 'center',
         color: `${color}`,
+        padding: '0 16px',
       }}
     >
       {state?.text}

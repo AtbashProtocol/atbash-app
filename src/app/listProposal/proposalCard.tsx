@@ -38,16 +38,25 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
           {isEnded && <StatusTag isGetResult={isEnded} />}{' '}
           <StatusTag isEnded={isEnded} isLive={!isEnded} />
         </Col>
-        <Col span={24} className="campaigns-card-header">
+        <Col span={24}>
           <Image
             alt=""
-            style={{ aspectRatio: '16/9', objectFit: 'cover' }}
+            style={{
+              aspectRatio: '16/9',
+              objectFit: 'cover',
+              borderRadius: '8px 8px 0 0',
+            }}
             src={proposalMetadata.image}
             preview={false}
           />
         </Col>
         <Col span={24}>
-          <Card className="campaigns-card-body">
+          <Card
+            bordered={false}
+            className="campaigns-card-body"
+            style={{ borderRadius: '0px 0px 8px 8px' }}
+            bodyStyle={{ padding: 8 }}
+          >
             <Row gutter={[16, 16]}>
               <Col span={24}>
                 <Typography.Title level={4} style={{ color: 'black' }}>

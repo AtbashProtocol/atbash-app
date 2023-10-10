@@ -3,6 +3,9 @@ import Script from 'next/script'
 
 import { Col, Row } from 'antd'
 import WalletProvider from '@/providers/wallet.provider'
+import Watcher from '@/watcher'
+
+import { ReceiptProvider } from '@/providers/receipt.provider'
 import { ProposalProvider } from '@/providers/proposal.provider'
 
 import '@solana/wallet-adapter-react-ui/styles.css'
@@ -39,9 +42,12 @@ export default function RootLayout({
       <body>
         <WalletProvider>
           <ProposalProvider>
-            <Row align="middle" justify="center">
-              <Col span={24}>{children}</Col>
-            </Row>
+            <ReceiptProvider>
+              <Row align="middle" justify="center">
+                <Col span={24}>{children}</Col>
+              </Row>
+              <Watcher />
+            </ReceiptProvider>
           </ProposalProvider>
         </WalletProvider>
       </body>
