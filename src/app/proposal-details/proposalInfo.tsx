@@ -45,7 +45,7 @@ export default function ProposalInfo({ proposalAddress }: ProposalInfoProps) {
         <Col span={24}>
           <Row align="middle">
             <Col>
-              {isEnded && <StatusTag isGetResult={isEnded} />}{' '}
+              {isEnded && isOwner && <StatusTag isGetResult={isEnded} />}{' '}
               <StatusTag
                 isOwner={isOwner}
                 isEnded={isEnded}
@@ -58,8 +58,9 @@ export default function ProposalInfo({ proposalAddress }: ProposalInfoProps) {
             </Col>
             <Col>
               <Typography.Text style={{ fontSize: '0.8rem' }}>
-                Voting period: {dayjs(Number(startDate)).format('D/MM/YYYY')} -{' '}
-                {dayjs(Number(endDate)).format('D/MM/YYYY')}
+                Voting period:{' '}
+                {dayjs(Number(startDate)).format('H:mm A, D/MM/YYYY')} -{' '}
+                {dayjs(Number(endDate)).format('H:mm A, D/MM/YYYY')}
               </Typography.Text>
             </Col>
           </Row>

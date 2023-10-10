@@ -28,6 +28,9 @@
     color: $WHITE !important;
   }
 }
+.ant-btn-primary:disabled{
+  background-color: #97928A !important;
+}
 
 //card
 .ant-card {
@@ -70,6 +73,15 @@
       }
     }
   }
+  .ant-steps-item-finish {
+    .ant-steps-item-icon{
+      background-color: $PRIMARY !important;
+      border-color: $PRIMARY !important;
+      .ant-steps-icon{
+        color: $BLACK !important;
+      }
+    }
+  }
   .ant-steps-item-active{
     .ant-steps-item-icon{
       background-color: $PRIMARY !important;
@@ -90,7 +102,6 @@
 }
 
 //input
-
 .ant-input{
   background-color: inherit;
   color: $WHITE;
@@ -98,9 +109,37 @@
     border-color: $PRIMARY !important;
   }
   &::placeholder{
-    color: $WHITE;
+    color: #97928A;
   }
   &:hover{
     border-color: $PRIMARY !important;
+  }
+}
+
+//image
+.ant-image{
+  width: 100%;
+}
+
+//time-picker
+.ant-picker{
+  background-color: inherit;
+  &:hover{
+    border-color: $PRIMARY !important;
+    .ant-picker-clear{
+      background-color: inherit;
+    }
+  }
+  .ant-picker-input>input{
+    color: $WHITE;
+  }
+  .ant-picker-suffix{
+    color: $WHITE;
+  }
+}
+//empty-icon
+.ant-empty-normal{
+  .ant-empty-description{
+    color: $WHITE;
   }
 }

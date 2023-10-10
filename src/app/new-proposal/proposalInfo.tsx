@@ -83,10 +83,10 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
               </Col>
               <Col>
                 <Typography.Text>
-                  <span style={{ color: title.length > 32 ? 'red' : '' }}>
+                  <span style={{ color: title.length > 64 ? 'red' : '' }}>
                     {title.length}
                   </span>
-                  /32 characters
+                  /64 characters
                 </Typography.Text>
               </Col>
             </Row>
@@ -111,11 +111,11 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
               <Col>
                 <Typography.Text>
                   <span
-                    style={{ color: description.length > 250 ? 'red' : '' }}
+                    style={{ color: description.length > 300 ? 'red' : '' }}
                   >
                     {description.length}
                   </span>
-                  /250 characters
+                  /300 characters
                 </Typography.Text>
               </Col>
             </Row>
@@ -213,7 +213,13 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
             </Button>
           </Col>
           <Col span={12}>
-            <Button onClick={onNext} block type="primary" size="large">
+            <Button
+              disabled={!(title && description && image)}
+              onClick={onNext}
+              block
+              type="primary"
+              size="large"
+            >
               Continue
             </Button>
           </Col>
