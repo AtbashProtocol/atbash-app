@@ -129,6 +129,7 @@ export const useGetResult = (proposalAddress: string) => {
   const metadata = useMetadata(proposalAddress)
 
   const getResult = useCallback(async () => {
+    if (!metadata) return []
     const merkleRoot = metadata.merkleRoot
     const merkle = MerkleDistributor.fromBuffer(Buffer.from(merkleRoot.data))
 
@@ -138,7 +139,7 @@ export const useGetResult = (proposalAddress: string) => {
     })
 
     return result
-  }, [atbash, metadata.merkleRoot, proposalAddress])
+  }, [atbash, metadata, proposalAddress])
 
   return getResult
 }

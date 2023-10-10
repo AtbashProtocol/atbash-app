@@ -17,7 +17,7 @@ const EndIn = ({ proposalAddress }: { proposalAddress: string }) => {
   return (
     <Row align="middle" gutter={[8, 8]}>
       <Col flex="auto">
-        <span>{isStarted ? 'Voting Period' : 'Start in'}</span>
+        <span>{isStarted ? 'Voting Period:' : 'Start in'}</span>
       </Col>
       <Col>
         <Space>

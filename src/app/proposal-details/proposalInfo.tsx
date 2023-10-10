@@ -49,7 +49,6 @@ export default function ProposalInfo({ proposalAddress }: ProposalInfoProps) {
               {isEnded && isOwner && <StatusTag isGetResult={isEnded} />}{' '}
               <StatusTag
                 isOwner={isOwner}
-                isEnded={isEnded}
                 isLive={!isEnded}
                 color="white"
               />

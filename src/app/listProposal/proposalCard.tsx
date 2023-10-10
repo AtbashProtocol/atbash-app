@@ -36,8 +36,8 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
     <Link href={`/proposal-details?proposalAddress=${proposalAddress}`}>
       <Row className="campaigns-card">
         <Col span={24} className="campaigns-card-tags">
-          {isEnded && <StatusTag isGetResult={isEnded} />}{' '}
-          <StatusTag isEnded={isEnded} isLive={!isEnded} />
+          {isEnded && isOwner && <StatusTag isGetResult={isEnded} />}{' '}
+          {!!receipt && <StatusTag isVoted={!!receipt} />}
         </Col>
         <Col span={24}>
           <Image
@@ -65,16 +65,11 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
                 </Typography.Title>
               </Col>
               <Col span={24}>
-                <Row align="middle">
-                  <Col flex="auto">
-                    <Space size={4}>
-                      <StatusTag isOwner={isOwner} />
-                      {receipt && <StatusTag isVoted />}
-                    </Space>
-                  </Col>
+                <Row align="middle" justify="space-between">
                   <Col>
                     <EndIn proposalAddress={proposalAddress} />
                   </Col>
+                  <Col>{isOwner && <StatusTag isOwner={isOwner} />}</Col>
                 </Row>
               </Col>
               <Col span={24}>

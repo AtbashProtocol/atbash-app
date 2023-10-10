@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useState } from 'react'
+import { Fragment, useCallback, useMemo, useState } from 'react'
 import CountUp from 'react-countup'
 
 import IonIcon from '@sentre/antd-ionicon'
@@ -12,8 +12,11 @@ const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
     proposalMetadata: { description: '' },
   }
   const { candidates } = useProposalByAddress(proposalAddress)
-  const [result, setResult] = useState(Array(candidates.length).fill(0))
+  const [result, setResult] = useState<number[]>(
+    Array(candidates.length).fill(0),
+  )
   const [loading, setLoading] = useState(false)
+  const max = useMemo(() => Math.max(...result), [result])
 
   const getResult = useGetResult(proposalAddress)
   const onGetResult = useCallback(async () => {
@@ -60,6 +63,7 @@ const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
                 candidateAddress={address.toBase58()}
                 proposalAddress={proposalAddress}
                 result={result[i]}
+                active={!!result[i] && result[i] === max}
               />
             </Col>
           ))}
@@ -92,20 +96,30 @@ const Candidate = ({
   candidateAddress,
   proposalAddress,
   result = 0,
+  active = false,
 }: {
   candidateAddress: string
   proposalAddress: string
   result?: number
+  active?: boolean
 }) => {
   const { proposalMetadata } = useMetadata(proposalAddress)
   const candidates = proposalMetadata?.candidateMetadata
   const { avatar, name } = candidates[candidateAddress]
   return (
-    <Row justify="center" style={{ position: 'relative' }}>
+    <Row
+      justify="center"
+      style={{
+        position: 'relative',
+        border: 'solid 1px',
+        borderColor: active ? '#FFCD75' : 'transparent',
+        borderRadius: 8,
+      }}
+    >
       <Col
         span={24}
         style={{
-          background: '#ECEADD',
+          background: active ? '#FFCD75' : '#ECEADD',
           padding: 8,
           borderRadius: '8px 8px 0px 0px',
           textAlign: 'center',
@@ -119,7 +133,7 @@ const Candidate = ({
         <Image
           alt=""
           style={{
-            aspectRatio: '16/9',
+            aspectRatio: '4/3',
             objectFit: 'cover',
             borderRadius: '0px 0px 8px 8px',
           }}
@@ -131,7 +145,7 @@ const Candidate = ({
       <Col
         span={24}
         style={{
-          background: '#FFFFFF',
+          background: active ? '#FFCD75' : '#FFFFFF',
           padding: 8,
           borderRadius: 8,
           textAlign: 'center',

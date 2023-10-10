@@ -3,6 +3,7 @@ import { Fragment, useState } from 'react'
 
 import { Button, Image, Col, Row, Typography, message } from 'antd'
 import { useVote } from '@/hooks/atbash.hook'
+import { useReceiptsByProposalAddress } from '@/providers/receipt.provider'
 
 type CandidateModalProps = {
   avatar: string
@@ -21,13 +22,15 @@ export default function CandidateModal({
   hideModal,
 }: CandidateModalProps) {
   const [loading, setLoading] = useState(false)
+  const receipt = useReceiptsByProposalAddress(proposalAddress)
 
   const onVote = useVote(proposalAddress, candidateAddress)
   const onSubmit = async () => {
     try {
       setLoading(true)
       await onVote()
-      console.log('Successfully Created Proposal')
+      message.success(`You voted for ${name} successfully`)
+      hideModal()
     } catch (er: any) {
       message.error(er.message)
     } finally {
@@ -38,7 +41,9 @@ export default function CandidateModal({
   return (
     <Row gutter={[24, 24]}>
       <Col span={24}>
-        <Typography.Title level={4}>Vote for Candidate</Typography.Title>
+        <Typography.Title level={4}>
+          Vote for Candidate: {name}
+        </Typography.Title>
       </Col>
       <Col span={24}>
         <Row gutter={[12, 12]} justify="center" align="middle">
@@ -50,13 +55,14 @@ export default function CandidateModal({
                 objectFit: 'cover',
                 width: '200px',
                 height: '200px',
+                borderRadius: 8,
               }}
               src={avatar}
               preview={false}
             />
           </Col>
           <Col span={24} style={{ textAlign: 'center' }}>
-            {name}
+            <Typography.Title level={5}>{name}</Typography.Title>
           </Col>
           <Col span={24} style={{ textAlign: 'center' }}>
             {description}
@@ -65,19 +71,21 @@ export default function CandidateModal({
       </Col>
       <Col span={24}>
         <Row gutter={[12, 24]} align="middle" justify="end">
-          <Col>
-            <Button onClick={hideModal} size="large">
+          <Col span={12}>
+            <Button block onClick={hideModal} size="large">
               Close
             </Button>
           </Col>
-          <Col>
+          <Col span={12}>
             <Button
               loading={loading}
               onClick={onSubmit}
               type="primary"
               size="large"
+              block
+              disabled={!!receipt}
             >
-              Submit
+              {!!receipt ? 'Your already vote' : 'Submit'}
             </Button>
           </Col>
         </Row>
