@@ -1,8 +1,9 @@
 'use client'
 import { useMemo, useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { createGlobalState } from 'react-use'
 
-import { Breadcrumb, Card, Col, Row, Steps } from 'antd'
+import { Breadcrumb, Card, Col, Row, Steps, Button } from 'antd'
 import ProposalInfo from './proposalInfo'
 import CandidateInfo from './candidateInfo'
 import VoterAccepted from './voterAccepted'
@@ -42,6 +43,7 @@ const VOTER_ACCEPTED = 2
 
 export default function NewProposal() {
   const [step, setStep] = useState(PROPOSAL_INFO)
+  const { push } = useRouter()
 
   const processInit = useMemo(() => {
     switch (step) {
@@ -73,8 +75,8 @@ export default function NewProposal() {
           </Col>
         </Row>
       </Col>
-      <Col xs={24} md={20} style={{ padding: 24, top: -120 }}>
-        <Row gutter={[0, 12]} align="middle" justify="center">
+      <Col xs={24} md={20} style={{ padding: 24, top: -150 }}>
+        <Row gutter={[0, 16]} align="middle" justify="center">
           <Col span={16}>
             <Breadcrumb
               items={[
@@ -96,6 +98,15 @@ export default function NewProposal() {
                 },
               ]}
             />
+          </Col>
+          <Col span={16}>
+            <Button
+              onClick={() => push('/')}
+              type="primary"
+              icon={<IonIcon name="arrow-back-outline" />}
+            >
+              Back
+            </Button>
           </Col>
           <Col span={16}>
             <Card className="card-info">

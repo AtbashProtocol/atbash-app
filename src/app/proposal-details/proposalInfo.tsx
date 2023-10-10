@@ -46,7 +46,7 @@ export default function ProposalInfo({ proposalAddress }: ProposalInfoProps) {
         <Col span={24}>
           <Row gutter={[8, 8]} align="middle">
             <Col>
-              {isEnded && <StatusTag isGetResult={isEnded} />}{' '}
+              {isEnded && isOwner && <StatusTag isGetResult={isEnded} />}{' '}
               <StatusTag
                 isOwner={isOwner}
                 isEnded={isEnded}
