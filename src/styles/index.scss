@@ -4,13 +4,7 @@
 html {
   scroll-behavior: smooth;
   font-synthesis: none;
-  font-size: 16px;
-}
-
-@media (max-width: 600px) {
-  html {
-    font-size: 14px;
-  }
+  font-size: 14px;
 }
 
 body {
@@ -20,7 +14,7 @@ body {
   background-color: $BLACK;
 }
 
-.banner{
+.banner {
   position: relative;
   background-image: url('/hero.png');
   background-position: center;
@@ -28,18 +22,18 @@ body {
   background-size: cover !important;
   background-origin: border-box;
   background-attachment: fixed;
-  &::before{
+  &::before {
     content: '';
     position: absolute;
     top: 0;
     right: 0;
     left: 0;
     bottom: 0;
-    background: rgba(0,0,0,0.5);
+    background: rgba(0, 0, 0, 0.5);
   }
 }
 
-.btn-wallet{
+.btn-wallet {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -49,12 +43,12 @@ body {
   border-radius: 0.6rem;
 }
 
-.ant-upload-wrapper{
+.ant-upload-wrapper {
   width: 100% !important;
   height: 100% !important;
-  .ant-upload-drag{
+  .ant-upload-drag {
     height: 100% !important;
-    &:hover{
+    &:hover {
       border-color: $PRIMARY !important;
     }
   }

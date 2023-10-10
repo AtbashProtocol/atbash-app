@@ -9,9 +9,10 @@ export default function Home() {
       <Col span={24}>
         <Banner />
       </Col>
-      <Col xs={24} md={20} span={24} style={{ padding: 24 }}>
+      <Col sm={24} lg={22}>
         <ListProposal />
       </Col>
+      <Col span={24} />
     </Row>
   )
 }
