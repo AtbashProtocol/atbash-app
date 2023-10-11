@@ -125,7 +125,10 @@ const Candidate = ({
           textAlign: 'center',
         }}
       >
-        <Typography.Text strong style={{ textTransform: 'capitalize' }}>
+        <Typography.Text
+          strong
+          style={{ textTransform: 'capitalize', color: 'black' }}
+        >
           {name}
         </Typography.Text>
       </Col>
@@ -154,7 +157,10 @@ const Candidate = ({
           width: '90%',
         }}
       >
-        <Typography.Text strong style={{ textTransform: 'capitalize' }}>
+        <Typography.Text
+          strong
+          style={{ textTransform: 'capitalize', color: 'black' }}
+        >
           <CountUp start={0} end={result} duration={2} separator="," />
         </Typography.Text>
       </Col>

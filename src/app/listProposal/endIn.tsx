@@ -13,12 +13,15 @@ const EndIn = ({ proposalAddress }: { proposalAddress: string }) => {
 
   const isStarted = Date.now() / 1000 > startDate.toNumber()
   const time = !isStarted ? startDate : endDate
+  const endTime = Date.now() / 1000 > endDate.toNumber()
 
   return (
     <Row align="middle" gutter={[8, 8]}>
-      <Col flex="auto">
-        <span>{isStarted ? 'Voting Period:' : 'Start in'}</span>
-      </Col>
+      {!endTime && (
+        <Col flex="auto">
+          <span>{isStarted ? 'Voting Period:' : 'Start in'}</span>
+        </Col>
+      )}
       <Col>
         <Space>
           <TimeCountDown endTime={time.toNumber()} />
