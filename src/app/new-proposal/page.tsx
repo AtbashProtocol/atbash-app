@@ -1,7 +1,6 @@
 'use client'
 import { useMemo, useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { createGlobalState } from 'react-use'
 
 import { Breadcrumb, Card, Col, Row, Steps, Button } from 'antd'
 import ProposalInfo from './proposalInfo'
@@ -9,33 +8,6 @@ import CandidateInfo from './candidateInfo'
 import VoterAccepted from './voterAccepted'
 import Header from '@/components/header'
 import IonIcon from '@sentre/antd-ionicon'
-
-import { ProposalMetadata, InitProposalProps } from '@/hooks/atbash.hook'
-
-export enum InitProposalStep {
-  proposalInfo,
-  candidateInfo,
-  voterAccepted,
-}
-
-const DEFAULT_PROPOSAL_METADATA: ProposalMetadata = {
-  title: '',
-  description: '',
-  image: '',
-  candidateMetadata: {},
-}
-
-const DEFAULT_INIT_PROPOSAL_PROPS: InitProposalProps = {
-  startTime: Date.now(), //now
-  endTime: Date.now() + 3 * (24 * 60 * 60 * 1000), // Add more 3 days
-  voters: [],
-  candidates: [],
-  proposalMetadata: DEFAULT_PROPOSAL_METADATA,
-}
-
-export const useGlobalProposal = createGlobalState<InitProposalProps>(
-  DEFAULT_INIT_PROPOSAL_PROPS,
-)
 
 const PROPOSAL_INFO = 0
 const CANDIDATE_INFO = 1
@@ -105,7 +77,7 @@ export default function NewProposal() {
               type="primary"
               icon={<IonIcon name="arrow-back-outline" />}
             >
-              Back
+              Back Home
             </Button>
           </Col>
           <Col span={16}>

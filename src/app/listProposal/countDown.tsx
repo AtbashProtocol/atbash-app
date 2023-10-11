@@ -60,7 +60,7 @@ const TimeCountDown = ({ endTime }: TimeCountDownProps) => {
   if (endTime < currentTime)
     return (
       <TimeTag>
-        <Typography.Text>Expired</Typography.Text>
+        <Typography.Text style={{ color: 'black' }}>Expired</Typography.Text>
       </TimeTag>
     )
 
@@ -69,23 +69,31 @@ const TimeCountDown = ({ endTime }: TimeCountDownProps) => {
       {!!countDown.days && (
         <Fragment>
           <TimeTag>
-            <Typography.Text>{countDown.days}d</Typography.Text>
+            <Typography.Text style={{ color: 'black' }}>
+              {countDown.days}d
+            </Typography.Text>
           </TimeTag>
           :
         </Fragment>
       )}
       <TimeTag>
-        <Typography.Text>{countDown.hours}h</Typography.Text>
+        <Typography.Text style={{ color: 'black' }}>
+          {countDown.hours}h
+        </Typography.Text>
       </TimeTag>
       :
       <TimeTag>
-        <Typography.Text>{countDown.minutes}m</Typography.Text>
+        <Typography.Text style={{ color: 'black' }}>
+          {countDown.minutes}m
+        </Typography.Text>
       </TimeTag>
       {!countDown.days && (
         <Fragment>
           :
           <TimeTag>
-            <Typography.Text>{countDown.seconds}s</Typography.Text>
+            <Typography.Text style={{ color: 'black' }}>
+              {countDown.seconds}s
+            </Typography.Text>
           </TimeTag>
         </Fragment>
       )}

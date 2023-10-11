@@ -17,8 +17,8 @@ import {
 import SpaceVertical from './spaceVertical'
 import CandidateTable from './candidateTable'
 
-import { useGlobalProposal } from './page'
 import { fileToBase64, isAddress } from '@/helpers/utils'
+import { useProposalData } from '@/providers/proposal.provider'
 
 type CandidateInfoProp = {
   onNext: () => void
@@ -31,11 +31,12 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
   const [descCandidate, setDescCandidate] = useState('')
   const [avtCandidate, setAvtCandidate] = useState('')
   const [walletError, setWalletError] = useState('')
-  const [proposalData, setProposalData] = useGlobalProposal()
+  const { proposalData, setProposalData } = useProposalData()
 
   const candidates = proposalData.proposalMetadata.candidateMetadata
   const candidatesAddr = proposalData.candidates
 
+  console.log('proposalData', proposalData)
   const onChangeInfo = (keyCandidate: string, value: string) => {
     if (keyCandidate === 'name') setNameCandidate(value)
     if (keyCandidate === 'description') setDescCandidate(value)

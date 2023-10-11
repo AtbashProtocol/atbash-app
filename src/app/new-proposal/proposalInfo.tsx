@@ -19,7 +19,7 @@ import SpaceVertical from './spaceVertical'
 
 import { InitProposalProps, ProposalMetadata } from '@/hooks/atbash.hook'
 import { fileToBase64 } from '@/helpers/utils'
-import { useGlobalProposal } from './page'
+import { useProposalData } from '@/providers/proposal.provider'
 
 type ProposalInfoProp = {
   onNext: () => void
@@ -27,7 +27,7 @@ type ProposalInfoProp = {
 
 export default function ProposalInfo({ onNext }: ProposalInfoProp) {
   const { push } = useRouter()
-  const [proposalData, setProposalData] = useGlobalProposal()
+  const { proposalData, setProposalData } = useProposalData()
 
   const { description, title, image } = proposalData.proposalMetadata
   const { startTime, endTime } = proposalData
