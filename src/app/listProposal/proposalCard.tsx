@@ -4,12 +4,13 @@ import dayjs from 'dayjs'
 import { useMemo } from 'react'
 import { useWallet } from '@solana/wallet-adapter-react'
 
-import { Col, Row, Image, Card, Typography, Divider } from 'antd'
+import { Col, Row, Image, Card, Typography, Divider, Space } from 'antd'
 import StatusTag from '@/components/statusTag'
 
 import { useMetadata } from '@/hooks/atbash.hook'
 import { useProposalByAddress } from '@/providers/proposal.provider'
 import EndIn from './endIn'
+import { useReceiptsByProposalAddress } from '@/providers/receipt.provider'
 
 type CampaignCardProps = {
   proposalAddress: string
@@ -20,9 +21,9 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
     proposalMetadata: { title: '', description: '', image: '' },
   }
   const { wallet } = useWallet()
-  const { authority, startDate, endDate } =
-    useProposalByAddress(proposalAddress)
+  const { authority, endDate } = useProposalByAddress(proposalAddress)
   const endTime = endDate.toNumber() * 1000
+  const receipt = useReceiptsByProposalAddress(proposalAddress)
 
   const address = useMemo(
     () => (wallet && wallet.adapter.publicKey?.toBase58()) || '',
@@ -35,8 +36,8 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
     <Link href={`/proposal-details?proposalAddress=${proposalAddress}`}>
       <Row className="campaigns-card">
         <Col span={24} className="campaigns-card-tags">
-          {isEnded && <StatusTag isGetResult={isEnded} />}{' '}
-          <StatusTag isEnded={isEnded} isLive={!isEnded} />
+          {isEnded && isOwner && <StatusTag isGetResult={isEnded} />}{' '}
+          {!!receipt && <StatusTag isVoted={!!receipt} />}
         </Col>
         <Col span={24}>
           <Image
@@ -64,13 +65,11 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
                 </Typography.Title>
               </Col>
               <Col span={24}>
-                <Row align="middle">
-                  <Col flex="auto">
-                    <StatusTag isOwner={isOwner} />
-                  </Col>
+                <Row align="middle" justify="space-between">
                   <Col>
                     <EndIn proposalAddress={proposalAddress} />
                   </Col>
+                  <Col>{isOwner && <StatusTag isOwner={isOwner} />}</Col>
                 </Row>
               </Col>
               <Col span={24}>

@@ -8,9 +8,9 @@ import SpaceVertical from './spaceVertical'
 import IonIcon from '@sentre/antd-ionicon'
 import VoterTable from './voterTable'
 
-import { useGlobalProposal } from './page'
 import { useInitProposal } from '@/hooks/atbash.hook'
 import { isAddress } from '@/helpers/utils'
+import { useProposalData } from '@/providers/proposal.provider'
 
 type VoterAcceptedProp = {
   onBack: () => void
@@ -21,7 +21,7 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
   const [loading, setLoading] = useState(false)
   const [walletError, setWalletError] = useState('')
   const { push } = useRouter()
-  const [proposalData, setProposalData] = useGlobalProposal()
+  const { proposalData, setProposalData } = useProposalData()
 
   const initProposal = useInitProposal(proposalData)
   const voters = proposalData.voters

@@ -43,14 +43,19 @@ export const useReceiptStore = create<ReceiptStore>()(
 export function ReceiptProvider({ children }: { children: ReactNode }) {
   const upsertReceipt = useReceiptStore(({ upsertReceipt }) => upsertReceipt)
   const atbash = useAtbash()
-
+  const { publicKey } = useWallet()
   const fetchReceipts = useCallback(async () => {
-    const receipts = await atbash.program.account.receipt.all()
+    if (!publicKey) return
+    const receipts = await atbash.program.account.receipt.all([
+      {
+        memcmp: { offset: 8, bytes: publicKey.toBase58() },
+      },
+    ])
     for (const { account, publicKey } of receipts) {
       const receiptData = account as ReceiptData
       upsertReceipt(publicKey.toBase58(), receiptData)
     }
-  }, [atbash.program.account.receipt, upsertReceipt])
+  }, [atbash.program.account.receipt, upsertReceipt, publicKey])
 
   useEffect(() => {
     fetchReceipts()
@@ -78,19 +83,13 @@ export const useReceipts = () => {
  */
 export const useReceiptsByProposalAddress = (proposalAddress: string) => {
   const receipts = useReceipts()
-  const { publicKey } = useWallet()
 
   const receipt = useMemo(() => {
-    if (!publicKey) return
     for (const address in receipts) {
-      const { authority, proposal } = receipts[address]
-      if (
-        publicKey.equals(authority) &&
-        proposal.toBase58() === proposalAddress
-      )
-        return receipts[address]
+      const { proposal } = receipts[address]
+      if (proposal.toBase58() === proposalAddress) return receipts[address]
     }
-  }, [proposalAddress, publicKey, receipts])
+  }, [proposalAddress, receipts])
 
   return receipt
 }

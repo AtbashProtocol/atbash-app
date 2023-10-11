@@ -8,11 +8,35 @@ import { SystemProgram } from '@solana/web3.js'
 
 import { env } from '@/configs/env'
 import { ProposalData } from 'atbash-protocol'
-import { useAtbash } from '@/hooks/atbash.hook'
+import {
+  InitProposalProps,
+  ProposalMetadata,
+  useAtbash,
+} from '@/hooks/atbash.hook'
+
+const DEFAULT_PROPOSAL_METADATA: ProposalMetadata = {
+  title: '',
+  description: '',
+  image: '',
+  candidateMetadata: {},
+}
+
+const DEFAULT_INIT_PROPOSAL_PROPS: InitProposalProps = {
+  startTime: Date.now(), //now
+  endTime: Date.now() + 3 * (24 * 60 * 60 * 1000), // Add more 3 days
+  voters: [],
+  candidates: [],
+  proposalMetadata: DEFAULT_PROPOSAL_METADATA,
+}
 
 export type ProposalStore = {
   proposals: Record<string, ProposalData>
   upsertProposal: (address: string, newPool: ProposalData) => void
+}
+
+export type InitProposalStore = {
+  proposalData: InitProposalProps
+  setProposalData: (initProposalProps: InitProposalProps) => void
 }
 
 /**
@@ -37,6 +61,11 @@ export const useProposalStore = create<ProposalStore>()(
     },
   ),
 )
+
+export const useInitProposalData = create<InitProposalStore>((set) => ({
+  proposalData: DEFAULT_INIT_PROPOSAL_PROPS,
+  setProposalData: (proposalData) => set({ proposalData }),
+}))
 
 /**
  * Provider
@@ -73,6 +102,16 @@ export function ProposalProvider({ children }: { children: ReactNode }) {
 export const useProposals = () => {
   const pools = useProposalStore(({ proposals: pools }) => pools)
   return pools
+}
+
+export const useProposalData = () => {
+  const { proposalData, setProposalData } = useInitProposalData(
+    ({ proposalData, setProposalData }) => ({
+      proposalData,
+      setProposalData,
+    }),
+  )
+  return { proposalData, setProposalData }
 }
 
 /**

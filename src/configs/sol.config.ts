@@ -29,9 +29,9 @@ const conf: Record<Env, Conf> = {
    * Production configurations
    */
   production: {
-    rpc: 'https://api.mainet-beta.solana.com',
-    network: WalletAdapterNetwork.Mainnet,
-    atbashAddress: '',
+    rpc: 'https://api.devnet.solana.com',
+    network: WalletAdapterNetwork.Devnet,
+    atbashAddress: 'ascnfBsat1jv2jrcZZLkVKuzdbuWuCnqmGyXvMTvhm9',
     taxman: '',
     fee: 10 ** 6, // lamports
   },

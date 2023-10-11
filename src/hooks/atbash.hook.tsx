@@ -123,3 +123,23 @@ export const useVote = (proposalAddress: string, voteFor: string) => {
 
   return onVote
 }
+
+export const useGetResult = (proposalAddress: string) => {
+  const atbash = useAtbash()
+  const metadata = useMetadata(proposalAddress)
+
+  const getResult = useCallback(async () => {
+    if (!metadata) return []
+    const merkleRoot = metadata.merkleRoot
+    const merkle = MerkleDistributor.fromBuffer(Buffer.from(merkleRoot.data))
+
+    const result = await atbash.getResult({
+      proposalAddress,
+      totalVoter: merkle.voters.length,
+    })
+
+    return result
+  }, [atbash, metadata, proposalAddress])
+
+  return getResult
+}

@@ -23,7 +23,7 @@ export default function ListProposal() {
   const proposals = useProposals()
 
   return (
-    <Row gutter={[8, 12]}>
+    <Row gutter={[16, 16]}>
       <Col span={24}>
         <Row gutter={[12, 12]} align="middle">
           <Col>
@@ -32,7 +32,7 @@ export default function ListProposal() {
             </Typography.Title>
           </Col>
           <Col flex="auto" />
-          <Col>
+          {/* <Col>
             <Select
               value={filterCampaign}
               onChange={(value) => {
@@ -51,7 +51,7 @@ export default function ListProposal() {
                 Ended
               </Select.Option>
             </Select>
-          </Col>
+          </Col> */}
           <Col>
             <Button
               type="primary"
