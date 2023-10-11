@@ -13,12 +13,15 @@ import {
   Upload,
   Avatar,
   Space,
+  Divider,
+  Switch,
 } from 'antd'
-import SpaceVertical from './spaceVertical'
+import SpaceVertical from '../spaceVertical'
 import CandidateTable from './candidateTable'
 
-import { useGlobalProposal } from './page'
+import { useGlobalProposal } from '../page'
 import { fileToBase64, isAddress } from '@/helpers/utils'
+import UploadFile from './uploadFile'
 
 type CandidateInfoProp = {
   onNext: () => void
@@ -175,6 +178,11 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
         <Button onClick={onNewCandidate} type="primary" size="large">
           Add
         </Button>
+      </Col>
+
+      {/* Upload File CSV */}
+      <Col span={24}>
+        <UploadFile />
       </Col>
 
       {/* Table Candidate */}

@@ -53,3 +53,10 @@ body {
     }
   }
 }
+
+.ant-switch-checked{
+  background-color: $PRIMARY !important;
+  &:hover{
+    background-color: $PRIMARY_HOVER !important;
+  }
+}

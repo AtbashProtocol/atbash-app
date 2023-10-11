@@ -74,7 +74,10 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
                 </Row>
               </Col>
               <Col span={24}>
-                <Typography.Paragraph ellipsis={{ rows: 3 }}>
+                <Typography.Paragraph
+                  style={{ color: 'black' }}
+                  ellipsis={{ rows: 3 }}
+                >
                   {proposalMetadata.description}
                 </Typography.Paragraph>
               </Col>
