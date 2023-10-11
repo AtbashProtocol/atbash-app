@@ -2412,10 +2412,10 @@ asynckit@^0.4.0:
   resolved "https://registry.yarnpkg.com/asynckit/-/asynckit-0.4.0.tgz#c79ed97f7f34cb8f2ba1bc9790bcc366474b4b79"
   integrity sha512-Oei9OH4tRh0YqU3GxhX79dM/mwVgvbZJaSNaRk+bshkj0S5cfHcgYakreBjrHwatXKbz+IoIdYLxrKim2MjW0Q==
 
-atbash-protocol@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/atbash-protocol/-/atbash-protocol-1.2.1.tgz#cda3a44b93a5680b19ec14de7017c63d8d14cbad"
-  integrity sha512-ggm2LKPDjhBjqi5NKWxQ+00kPZbS7Akn8cYYGLI4/vC8LlksTWYqncEMycNORdDXthZCuydjgdPMgRpTRA0akQ==
+atbash-protocol@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/atbash-protocol/-/atbash-protocol-1.2.3.tgz#b8f9f2e270c4af54da9068a811f5c42efd98f2f4"
+  integrity sha512-zCUvdtCxGb9c5rjzSYCmXSW65sV3VFUGp5KoEUkVuOeHTqdwS7RSvY4E+IJhDFIUqpi4n6iLFxjoLftjjwT5Ww==
   dependencies:
     "@coral-xyz/anchor" "^0.28.0"
     "@coral-xyz/spl-token" "^0.28.1-beta.2"

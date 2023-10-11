@@ -10,23 +10,33 @@ import CopyToClipboard from 'react-copy-to-clipboard'
 import { Col, Row, Image, Card, Typography, Button, Modal, Tooltip } from 'antd'
 
 import { asyncWait, shortenAddress } from '@/helpers/utils'
-import { useMetadata } from '@/hooks/atbash.hook'
+import { useMetadata, useWinner } from '@/hooks/atbash.hook'
 
 type CandidateCardProps = {
   candidateAddress: string
   proposalAddress: string
+  isEnded: boolean
 }
 
 export default function CandidateCard({
   candidateAddress,
   proposalAddress,
+  isEnded,
 }: CandidateCardProps) {
   const [visible, setVisible] = useState(false)
   const [copied, setCopied] = useState(false)
 
-  const { proposalMetadata } = useMetadata(proposalAddress)
+  const { proposalMetadata } = useMetadata(proposalAddress) || {
+    proposalMetadata: { candidateMetadata: {} },
+  }
   const candidates = proposalMetadata?.candidateMetadata
-  const { avatar, name, description } = candidates[candidateAddress]
+  const { avatar, name, description } = candidates[candidateAddress] || {
+    avatar: '',
+    name: '',
+    description: '',
+  }
+
+  const winner = useWinner(proposalAddress)
 
   const onCopy = useCallback(async () => {
     copy(candidateAddress)
@@ -36,7 +46,13 @@ export default function CandidateCard({
   }, [candidateAddress])
 
   return (
-    <Row className="candidate-card">
+    <Row
+      className={
+        winner && winner === candidateAddress
+          ? 'candidate-card active'
+          : 'candidate-card'
+      }
+    >
       <Col span={24} className="candidate-image">
         <Image
           alt=""
@@ -69,9 +85,11 @@ export default function CandidateCard({
                   <Typography.Title level={4}>{name}</Typography.Title>
                 </Col>
                 <Col>
-                  <Button type="primary" onClick={() => setVisible(true)}>
-                    Vote Now
-                  </Button>
+                  {!isEnded && (
+                    <Button type="primary" onClick={() => setVisible(true)}>
+                      Vote Now
+                    </Button>
+                  )}
                   <Modal
                     open={visible}
                     onCancel={() => setVisible(false)}
