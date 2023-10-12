@@ -3,7 +3,16 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { web3 } from '@coral-xyz/anchor'
 
-import { Button, Col, Input, Row, Space, Typography, notification } from 'antd'
+import {
+  Button,
+  Col,
+  Input,
+  Modal,
+  Row,
+  Space,
+  Typography,
+  notification,
+} from 'antd'
 import SpaceVertical from '../spaceVertical'
 import IonIcon from '@sentre/antd-ionicon'
 import VoterTable from './voterTable'
@@ -13,6 +22,7 @@ import { isAddress } from '@/helpers/utils'
 import { useProposalData } from '@/providers/proposal.provider'
 import UploadFile from './uploadFile'
 import { NotificationPlacement } from 'antd/es/notification/interface'
+import SuccessModal from './successModal'
 
 type VoterAcceptedProp = {
   onBack: () => void
@@ -21,6 +31,7 @@ type NotificationType = 'success' | 'info' | 'warning' | 'error'
 
 export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
   const [voterAddr, setVoterAddr] = useState<string>()
+  const [visible, setVisible] = useState(false)
   const [loading, setLoading] = useState(false)
   const [walletError, setWalletError] = useState('')
   const [api, contextHolder] = notification.useNotification()
@@ -56,9 +67,8 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
   const onCreateProposal = async () => {
     try {
       setLoading(true)
-      const txId = await initProposal()
-      openNotification('success', 'Proposal created successfully', txId, 'top')
-      return push(`/`)
+      await initProposal()
+      setVisible(true)
     } catch (err: any) {
       openNotification('error', 'Proposal creation failed', err.message, 'top')
     } finally {
@@ -143,6 +153,23 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
             >
               Create Proposal
             </Button>
+            <Modal
+              open={visible}
+              onCancel={() => {
+                push('/')
+                setVisible(false)
+              }}
+              footer={null}
+              destroyOnClose
+              centered
+            >
+              <SuccessModal
+                hideModal={() => {
+                  push('/')
+                  setVisible(false)
+                }}
+              />
+            </Modal>
           </Col>
         </Row>
       </Col>

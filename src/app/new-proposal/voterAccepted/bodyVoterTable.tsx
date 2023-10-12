@@ -1,21 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 
-import {
-  Col,
-  Row,
-  Space,
-  Typography,
-  Tooltip,
-  Checkbox,
-  Button,
-  Input,
-  Avatar,
-  Upload,
-} from 'antd'
+import { Col, Row, Space, Typography, Tooltip, Button, Input } from 'antd'
 import IonIcon from '@sentre/antd-ionicon'
-import NumericInput from '@sentre/antd-numeric-input'
-import { UploadChangeParam } from 'antd/es/upload'
-import { fileToBase64, isAddress } from '@/helpers/utils'
+import { isAddress } from '@/helpers/utils'
 import { useProposalData } from '@/providers/proposal.provider'
 import { web3 } from '@coral-xyz/anchor'
 
@@ -60,11 +47,6 @@ export default function BodyVoterTable({
       ...proposalData,
       voters: updatedVoters,
     })
-  }
-
-  console.log('proposalData', proposalData)
-  for (const addr of voters) {
-    console.log('address', addr.toString())
   }
 
   return (

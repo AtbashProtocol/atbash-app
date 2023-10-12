@@ -11,7 +11,7 @@ export default function Header() {
       <Col>
         <Image
           preview={false}
-          height={60}
+          height={50}
           alt="Atbash Protocol"
           src="/brand.svg"
         />

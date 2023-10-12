@@ -20,6 +20,11 @@ export default function VoterTable({ voters }: VoterTableProp) {
             <BodyVoterTable index={idx} address={address.toString()} />
           </Col>
         ))}
+        {voters.length === 0 && (
+          <Col span={24}>
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+          </Col>
+        )}
       </Row>
     </Card>
   )

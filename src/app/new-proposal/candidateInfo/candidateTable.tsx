@@ -12,7 +12,7 @@ type CandidateTableProp = {
 export default function CandidateTable({ candidates }: CandidateTableProp) {
   return (
     <Card bordered={false} className="table-container">
-      <Row gutter={[8, 13]}>
+      <Row align="middle">
         <Col span={24}>
           <HeaderCandidateTable />
         </Col>

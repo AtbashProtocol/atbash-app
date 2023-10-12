@@ -12,6 +12,15 @@ body {
   padding: 0;
   color: $WHITE;
   background-color: $BLACK;
+  
+}
+
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 .banner {

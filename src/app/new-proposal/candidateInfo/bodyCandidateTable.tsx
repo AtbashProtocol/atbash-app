@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useState } from 'react'
 
 import {
   Col,
@@ -93,11 +93,6 @@ export default function BodyCandidateTable({
         candidateMetadata: deletedCandidateInfos,
       },
     })
-  }
-
-  console.log('proposalData', proposalData)
-  for (const addr of candidatesAddr) {
-    console.log('address', addr.toString())
   }
 
   return (
