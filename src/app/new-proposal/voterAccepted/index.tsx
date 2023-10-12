@@ -3,23 +3,38 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { web3 } from '@coral-xyz/anchor'
 
-import { Button, Col, Input, Row, Space, Typography } from 'antd'
-import SpaceVertical from './spaceVertical'
+import {
+  Button,
+  Col,
+  Input,
+  Modal,
+  Row,
+  Space,
+  Typography,
+  notification,
+} from 'antd'
+import SpaceVertical from '../spaceVertical'
 import IonIcon from '@sentre/antd-ionicon'
 import VoterTable from './voterTable'
 
 import { useInitProposal } from '@/hooks/atbash.hook'
 import { isAddress } from '@/helpers/utils'
 import { useProposalData } from '@/providers/proposal.provider'
+import UploadFile from './uploadFile'
+import { NotificationPlacement } from 'antd/es/notification/interface'
+import SuccessModal from './successModal'
 
 type VoterAcceptedProp = {
   onBack: () => void
 }
+type NotificationType = 'success' | 'info' | 'warning' | 'error'
 
 export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
   const [voterAddr, setVoterAddr] = useState<string>()
+  const [visible, setVisible] = useState(false)
   const [loading, setLoading] = useState(false)
   const [walletError, setWalletError] = useState('')
+  const [api, contextHolder] = notification.useNotification()
   const { push } = useRouter()
   const { proposalData, setProposalData } = useProposalData()
 
@@ -36,14 +51,26 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
       voters: voters,
     })
   }
+  const openNotification = (
+    type: NotificationType,
+    message: string,
+    description: string,
+    placement: NotificationPlacement,
+  ) => {
+    api[type]({
+      message,
+      description,
+      placement,
+    })
+  }
 
   const onCreateProposal = async () => {
     try {
       setLoading(true)
-      const txId = await initProposal()
-      console.log('Successfully Created Proposal, ', txId)
-    } catch (error) {
-      console.error('Failed to Create Proposal', error)
+      await initProposal()
+      setVisible(true)
+    } catch (err: any) {
+      openNotification('error', 'Proposal creation failed', err.message, 'top')
     } finally {
       setLoading(false)
     }
@@ -51,6 +78,7 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
 
   return (
     <Row gutter={[20, 20]} justify={'center'}>
+      {contextHolder}
       <Col span={24}>
         <Typography.Title level={3}>Create Num Voter</Typography.Title>
         <Typography.Text>
@@ -100,6 +128,9 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
         </Button>
       </Col>
       <Col span={24}>
+        <UploadFile />
+      </Col>
+      <Col span={24}>
         <VoterTable voters={voters} />
       </Col>
 
@@ -108,7 +139,7 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
       <Col span={24}>
         <Row gutter={[12, 12]}>
           <Col span={12}>
-            <Button onClick={onBack} block type="dashed" size="large">
+            <Button onClick={onBack} block size="large">
               Back
             </Button>
           </Col>
@@ -122,6 +153,23 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
             >
               Create Proposal
             </Button>
+            <Modal
+              open={visible}
+              onCancel={() => {
+                push('/')
+                setVisible(false)
+              }}
+              footer={null}
+              destroyOnClose
+              centered
+            >
+              <SuccessModal
+                hideModal={() => {
+                  push('/')
+                  setVisible(false)
+                }}
+              />
+            </Modal>
           </Col>
         </Row>
       </Col>

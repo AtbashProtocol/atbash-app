@@ -35,3 +35,13 @@ export const toFilename = (cid: string) => {
   const content = Buffer.from(decode(cid).subarray(0, CONTENT_LENGTH))
   return `${encode(content)}.${extension}`
 }
+
+export const getFileCSV = async (fileCSV: string) => {
+  return fetch(fileCSV).then(function (response) {
+    let reader = response.body?.getReader()
+    let decoder = new TextDecoder('utf-8')
+    return reader?.read().then(function (result) {
+      return decoder.decode(result.value)
+    })
+  })
+}

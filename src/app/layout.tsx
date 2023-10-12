@@ -10,6 +10,7 @@ import { ProposalProvider } from '@/providers/proposal.provider'
 
 import '@solana/wallet-adapter-react-ui/styles.css'
 import '@/styles/index.scss'
+import Splash from '@/components/splash'
 
 export const metadata: Metadata = {
   title: 'Atbash Protocol',
@@ -46,6 +47,7 @@ export default function RootLayout({
               <Row align="middle" justify="center">
                 <Col span={24}>{children}</Col>
               </Row>
+              <Splash open />
               <Watcher />
             </ReceiptProvider>
           </ProposalProvider>

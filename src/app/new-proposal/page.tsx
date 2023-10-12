@@ -47,7 +47,11 @@ export default function NewProposal() {
           </Col>
         </Row>
       </Col>
-      <Col xs={24} md={20} style={{ padding: 24, top: -150 }}>
+      <Col
+        xs={24}
+        md={20}
+        style={{ padding: 24, position: 'absolute', top: '80px' }}
+      >
         <Row gutter={[0, 16]} align="middle" justify="center">
           <Col span={16}>
             <Breadcrumb
@@ -57,14 +61,14 @@ export default function NewProposal() {
                   title: (
                     <>
                       <IonIcon name="home-outline" />
-                      <span>Proposal Dashboard</span>
+                      <span>Home</span>
                     </>
                   ),
                 },
                 {
                   title: (
                     <span style={{ color: '#EAB15A' }}>
-                      Create New Proposal
+                      Create New Campaign
                     </span>
                   ),
                 },

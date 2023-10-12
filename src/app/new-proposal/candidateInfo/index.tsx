@@ -13,9 +13,11 @@ import {
   Upload,
   Avatar,
   Space,
+  Modal,
 } from 'antd'
-import SpaceVertical from './spaceVertical'
+import SpaceVertical from '../spaceVertical'
 import CandidateTable from './candidateTable'
+import UploadFile from './uploadFile'
 
 import { fileToBase64, isAddress } from '@/helpers/utils'
 import { useProposalData } from '@/providers/proposal.provider'
@@ -23,6 +25,13 @@ import { useProposalData } from '@/providers/proposal.provider'
 type CandidateInfoProp = {
   onNext: () => void
   onBack: () => void
+}
+
+const error = () => {
+  Modal.error({
+    title: 'Exceed the number of Candidate',
+    content: 'For maximum 8 candidates, please enter the correct number',
+  })
 }
 
 export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
@@ -36,10 +45,9 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
   const candidates = proposalData.proposalMetadata.candidateMetadata
   const candidatesAddr = proposalData.candidates
 
-  console.log('proposalData', proposalData)
   const onChangeInfo = (keyCandidate: string, value: string) => {
     if (keyCandidate === 'name') setNameCandidate(value)
-    if (keyCandidate === 'description') setDescCandidate(value)
+    else setDescCandidate(value)
   }
 
   const onFileChangeAvatar = (file: UploadChangeParam) => {
@@ -53,6 +61,8 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
   }
   const onNewCandidate = () => {
     if (!isAddress(address)) return setWalletError('Wrong wallet address')
+    if (candidatesAddr.length > 8) return error()
+
     const nextProposalMetadata = {
       ...proposalData.proposalMetadata,
       candidateMetadata: {
@@ -73,6 +83,7 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
 
     return setProposalData({
       ...proposalData,
+      candidates: candidatesAddr,
       proposalMetadata: nextProposalMetadata,
     })
   }
@@ -176,6 +187,11 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
         <Button onClick={onNewCandidate} type="primary" size="large">
           Add
         </Button>
+      </Col>
+
+      {/* Upload File CSV */}
+      <Col span={24}>
+        <UploadFile />
       </Col>
 
       {/* Table Candidate */}

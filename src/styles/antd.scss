@@ -38,7 +38,7 @@
 }
 
 .card-info {
-  background-color: #2d2616 !important    ;
+  background-color: #191919 !important    ;
   box-shadow: 0px 4px 60px rgba(20, 244, 250, 0.12) !important;
   border: 1px solid #eab15a !important;
   backdrop-filter: blur(96px) !important;
@@ -54,12 +54,16 @@
 
 //modal
 .ant-modal-content {
-  background-color: #2d2616 !important;
+  background-color: #191919 !important;
   box-shadow: 0px 4px 60px rgba(20, 244, 250, 0.12) !important;
   border: 1px solid #eab15a !important;
   backdrop-filter: blur(96px) !important;
   color: #fff !important;
   position: relative;
+  .ant-modal-confirm-title,
+  .ant-modal-confirm-content{
+    color: $WHITE;
+  }
 }
 
 //step
@@ -151,5 +155,67 @@
 .ant-empty-normal {
   .ant-empty-description {
     color: $WHITE;
+  }
+}
+
+// upload file
+.ant-upload-wrapper{
+  display: flex;
+  flex-direction: column;
+  &:has(.ant-upload-list-item-container){
+    .ant-upload-drag{
+      display: none;
+    }
+    .ant-upload-list{
+      background-color: rgba(255, 255, 255, 0.15);
+      border: 1px solid #fff;
+      border-radius: 5px;
+      padding: 10px;
+      .ant-upload-list-item{
+        margin-top: 0;
+      }
+    }
+  }
+}
+
+.ant-upload-list-item{
+  &:hover{
+    .ant-upload-list-item-actions svg{
+      color: $WHITE !important;
+    }
+  }
+  .ant-upload-icon .anticon,
+  .ant-upload-list-item-name{
+    color: $WHITE !important;
+  }
+  
+}
+
+//table
+.table-container{
+  border: 1px solid $WHITE;
+  color: $WHITE;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  .ant-card-body{
+    padding: 0;
+    .ant-row{
+      row-gap: 0;
+    }
+    flex-wrap: nowrap;
+  }
+  .table-header{
+    border-bottom: 1px solid $WHITE;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 12px;
+  }
+  .table-item{
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    padding: 12px;
   }
 }

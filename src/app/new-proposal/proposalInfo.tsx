@@ -111,11 +111,11 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
               <Col>
                 <Typography.Text>
                   <span
-                    style={{ color: description.length > 300 ? 'red' : '' }}
+                    style={{ color: description.length > 600 ? 'red' : '' }}
                   >
                     {description.length}
                   </span>
-                  /300 characters
+                  /600 characters
                 </Typography.Text>
               </Col>
             </Row>

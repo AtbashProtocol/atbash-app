@@ -10,7 +10,7 @@
     img {
       height: 100%;
       width: 100%;
-      border-radius: 10px;
+      border-radius: 8px;
       filter: brightness(1);
     }
   }
@@ -66,14 +66,15 @@
   border-radius: 8px;
   position: relative;
   &::after {
-    content: 'Winner';
+    content: '';
     position: absolute;
-    background: rgba(0, 0, 0, 0.6);
-    border-radius: 8px;
-    padding: 16px;
-    width: 100%;
-    bottom: 0;
-    left: 0;
+    background-image: url('/temp-winner.svg');
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 38px ;
+    width: 50%;
+    right: 0;
+    top: 0;
     text-align: center;
   }
 }

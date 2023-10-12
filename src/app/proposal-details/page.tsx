@@ -1,7 +1,7 @@
 'use client'
-import { useSearchParams } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
-import { Breadcrumb, Col, Row } from 'antd'
+import { Breadcrumb, Button, Col, Row } from 'antd'
 import Header from '@/components/header'
 import IonIcon from '@sentre/antd-ionicon'
 import CampaignInfo from './proposalInfo'
@@ -9,6 +9,7 @@ import ListCandidate from './listCandidate'
 
 export default function ProposalDetails() {
   const searchParams = useSearchParams()
+  const { push } = useRouter()
   const proposalAddress = searchParams.get('proposalAddress') || ''
 
   return (
@@ -26,7 +27,11 @@ export default function ProposalDetails() {
         </Row>
       </Col>
 
-      <Col xs={24} md={20} style={{ padding: 24, top: -120 }}>
+      <Col
+        xs={24}
+        md={20}
+        style={{ padding: 24, position: 'absolute', top: '80px' }}
+      >
         <Row gutter={[0, 12]}>
           <Col span={24}>
             <Breadcrumb
@@ -36,17 +41,26 @@ export default function ProposalDetails() {
                   title: (
                     <>
                       <IonIcon name="home-outline" />
-                      <span>Proposal Dashboard</span>
+                      <span>Home</span>
                     </>
                   ),
                 },
                 {
                   title: (
-                    <span style={{ color: '#EAB15A' }}>Proposal Details</span>
+                    <span style={{ color: '#EAB15A' }}>Campaign Details</span>
                   ),
                 },
               ]}
             />
+          </Col>
+          <Col span={24}>
+            <Button
+              onClick={() => push('/')}
+              type="primary"
+              icon={<IonIcon name="arrow-back-outline" />}
+            >
+              Back
+            </Button>
           </Col>
           <Col span={24}>
             <CampaignInfo proposalAddress={proposalAddress} />
