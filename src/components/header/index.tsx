@@ -7,8 +7,8 @@ import Guideline from '@/app/guideline'
 
 export default function Header() {
   return (
-    <Row gutter={[24, 24]} align="middle">
-      <Col flex="auto">
+    <Row gutter={[24, 24]} justify="space-between" align="middle">
+      <Col>
         <Image
           preview={false}
           height={60}

@@ -5,17 +5,15 @@ import { Card, Col, Row, Typography } from 'antd'
 import CandidateCard from './candidateCard'
 
 import { useMetadata } from '@/hooks/atbash.hook'
+import { useProposalByAddress } from '@/providers/proposal.provider'
 
 type CandidateCardProps = {
   proposalAddress: string
 }
 
 export default function ListCandidate({ proposalAddress }: CandidateCardProps) {
-  const metadata = useMetadata(proposalAddress)
-
-  if (!metadata) return <Fragment />
-  const candidates = metadata.proposalMetadata.candidateMetadata
-
+  const { candidates, endDate } = useProposalByAddress(proposalAddress)
+  const ended = Date.now() / 1000 > endDate.toNumber()
   return (
     <Card className="card-info">
       <Row gutter={[16, 16]}>
@@ -24,12 +22,13 @@ export default function ListCandidate({ proposalAddress }: CandidateCardProps) {
             List Candidate
           </Typography.Title>
         </Col>
-        {Object.keys(candidates).map((candidateAddress) => {
+        {candidates.map((publicKey) => {
           return (
-            <Col span={8} key={candidateAddress}>
+            <Col span={8} key={publicKey.toBase58()}>
               <CandidateCard
-                candidateAddress={candidateAddress}
+                candidateAddress={publicKey.toBase58()}
                 proposalAddress={proposalAddress}
+                isEnded={ended}
               />
             </Col>
           )

@@ -127,19 +127,36 @@ export const useVote = (proposalAddress: string, voteFor: string) => {
 export const useGetResult = (proposalAddress: string) => {
   const atbash = useAtbash()
   const metadata = useMetadata(proposalAddress)
+  const provider = useAnchorProvider()
 
   const getResult = useCallback(async () => {
     if (!metadata) return []
     const merkleRoot = metadata.merkleRoot
     const merkle = MerkleDistributor.fromBuffer(Buffer.from(merkleRoot.data))
 
-    const result = await atbash.getResult({
+    const { result, tx } = await atbash.getResult({
       proposalAddress,
       totalVoter: merkle.voters.length,
     })
 
+    await provider.sendAndConfirm(tx)
+
     return result
-  }, [atbash, metadata, proposalAddress])
+  }, [atbash, metadata, proposalAddress, provider])
 
   return getResult
+}
+
+export const useWinner = (proposalAddress: string) => {
+  const proposal = useProposalByAddress(proposalAddress)
+
+  const winner = useMemo(() => {
+    if (!proposal.result.length) return
+    const num = proposal.result.map((e) => e.toNumber())
+    const max = Math.max(...num)
+    const i = num.findIndex((e) => e === max)
+    return proposal.candidates[i].toBase58()
+  }, [proposal.candidates, proposal.result])
+
+  return winner
 }

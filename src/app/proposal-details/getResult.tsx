@@ -1,8 +1,9 @@
-import { Fragment, useCallback, useMemo, useState } from 'react'
+import { Fragment, useCallback, useEffect, useMemo, useState } from 'react'
 import CountUp from 'react-countup'
 
 import IonIcon from '@sentre/antd-ionicon'
 import { Button, Col, Image, Modal, Row, Typography, message } from 'antd'
+
 import { useGetResult, useMetadata } from '@/hooks/atbash.hook'
 import { useProposalByAddress } from '@/providers/proposal.provider'
 
@@ -11,7 +12,8 @@ const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
   const { proposalMetadata } = useMetadata(proposalAddress) || {
     proposalMetadata: { description: '' },
   }
-  const { candidates } = useProposalByAddress(proposalAddress)
+  const { candidates, result: resultOnchain } =
+    useProposalByAddress(proposalAddress)
   const [result, setResult] = useState<number[]>(
     Array(candidates.length).fill(0),
   )
@@ -31,6 +33,10 @@ const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
       setLoading(false)
     }
   }, [getResult])
+
+  useEffect(() => {
+    if (resultOnchain.length) setResult(resultOnchain.map((e) => e.toNumber()))
+  }, [resultOnchain])
 
   return (
     <Fragment>

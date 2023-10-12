@@ -18,7 +18,7 @@ type ProposalInfoProps = {
 export default function ProposalInfo({ proposalAddress }: ProposalInfoProps) {
   const metadata = useMetadata(proposalAddress)
   const { wallet } = useWallet()
-  const { authority, endDate } = useProposalByAddress(proposalAddress)
+  const { authority, endDate, result } = useProposalByAddress(proposalAddress)
 
   const address = useMemo(
     () => (wallet && wallet.adapter.publicKey?.toBase58()) || '',
@@ -46,12 +46,10 @@ export default function ProposalInfo({ proposalAddress }: ProposalInfoProps) {
         <Col span={24}>
           <Row gutter={[8, 8]} align="middle">
             <Col>
-              {isEnded && isOwner && <StatusTag isGetResult={isEnded} />}{' '}
-              <StatusTag
-                isOwner={isOwner}
-                isLive={!isEnded}
-                color="white"
-              />
+              {isEnded && isOwner && !result.length && (
+                <StatusTag isGetResult={isEnded} />
+              )}{' '}
+              <StatusTag isOwner={isOwner} isLive={!isEnded} color="white" />
             </Col>
             <Col>
               <EndIn proposalAddress={proposalAddress} />

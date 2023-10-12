@@ -1,4 +1,4 @@
-.candidate-card{
+.candidate-card {
   position: relative;
   height: 24rem;
   color: #fff;
@@ -14,50 +14,66 @@
       filter: brightness(1);
     }
   }
-  
-  .candidate-header{
+
+  .candidate-header {
     position: absolute;
     top: 0;
     width: 100%;
     padding: 24px;
     text-align: right;
-    .icon-hand{
+    .icon-hand {
       width: 50%;
     }
   }
-  .candidate-card-body{
+  .candidate-card-body {
     position: absolute;
     width: 100%;
     bottom: 0;
     transform: translateY(100%);
     transition: all 0.2s ease-out;
-    .ant-card{
+    .ant-card {
       background-color: rgba(46, 46, 46, 0.5);
       color: #fff;
       border: 0;
     }
   }
 
-  &:hover{
-    .ant-image{
+  &:hover {
+    .ant-image {
       img {
         filter: brightness(0.7);
       }
     }
-    .candidate-header{
+    .candidate-header {
       display: none;
     }
-    .candidate-card-body{
+    .candidate-card-body {
       position: absolute;
       width: 100%;
       bottom: 0;
       transform: translateY(0);
       transition: all 0.2s ease-out;
-      .ant-card{
+      .ant-card {
         background-color: rgba(46, 46, 46, 0.5);
         color: #fff;
         border: 0;
       }
     }
+  }
+}
+.active {
+  border: solid 2px #eab15a;
+  border-radius: 8px;
+  position: relative;
+  &::after {
+    content: 'Winner';
+    position: absolute;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 8px;
+    padding: 16px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    text-align: center;
   }
 }

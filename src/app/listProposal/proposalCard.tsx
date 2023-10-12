@@ -11,6 +11,7 @@ import { useMetadata } from '@/hooks/atbash.hook'
 import { useProposalByAddress } from '@/providers/proposal.provider'
 import EndIn from './endIn'
 import { useReceiptsByProposalAddress } from '@/providers/receipt.provider'
+import ProposalWinder from '@/components/proposalWinder'
 
 type CampaignCardProps = {
   proposalAddress: string
@@ -21,7 +22,7 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
     proposalMetadata: { title: '', description: '', image: '' },
   }
   const { wallet } = useWallet()
-  const { authority, endDate } = useProposalByAddress(proposalAddress)
+  const { authority, endDate, result } = useProposalByAddress(proposalAddress)
   const endTime = endDate.toNumber() * 1000
   const receipt = useReceiptsByProposalAddress(proposalAddress)
 
@@ -36,8 +37,22 @@ export default function ProposalCard({ proposalAddress }: CampaignCardProps) {
     <Link href={`/proposal-details?proposalAddress=${proposalAddress}`}>
       <Row className="campaigns-card">
         <Col span={24} className="campaigns-card-tags">
-          {isEnded && isOwner && <StatusTag isGetResult={isEnded} />}{' '}
+          {isEnded && isOwner && !result.length && (
+            <StatusTag isGetResult={isEnded} />
+          )}{' '}
           {!!receipt && <StatusTag isVoted={!!receipt} />}
+        </Col>
+        <Col
+          span={24}
+          style={{
+            position: 'absolute',
+            right: 8,
+            top: '52%',
+            transform: 'translateY(-100%)',
+            zIndex: 1,
+          }}
+        >
+          <ProposalWinder proposalAddress={proposalAddress} />
         </Col>
         <Col span={24}>
           <Image
