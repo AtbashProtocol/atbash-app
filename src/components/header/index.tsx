@@ -7,11 +7,11 @@ import Guideline from '@/app/guideline'
 
 export default function Header() {
   return (
-    <Row gutter={[24, 24]}>
+    <Row gutter={[24, 24]} align="middle">
       <Col flex="auto">
         <Image
           preview={false}
-          height={50}
+          height={60}
           alt="Atbash Protocol"
           src="/brand.svg"
         />

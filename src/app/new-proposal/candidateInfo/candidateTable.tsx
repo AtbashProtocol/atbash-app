@@ -1,99 +1,40 @@
 'use client'
 
 import { CandidateMetadata } from '@/hooks/atbash.hook'
-import { Avatar, Col, Empty, Row, Typography } from 'antd'
+import { Card, Col, Empty, Row } from 'antd'
+import HeaderCandidateTable from './headerCandidateTable'
+import BodyCandidateTable from './bodyCandidateTable'
 
 type CandidateTableProp = {
   candidates: Record<string, CandidateMetadata>
 }
+
 export default function CandidateTable({ candidates }: CandidateTableProp) {
   return (
-    <Row>
-      {/* List Candidate */}
-      <Col span={24}>
-        <Row gutter={[0, 0]} align="middle">
-          <Col
-            span={4}
-            style={{ textAlign: 'center', border: '1px solid #EAB15A' }}
-          >
-            <Typography.Text>No.</Typography.Text>
-          </Col>
-          <Col
-            span={4}
-            style={{ textAlign: 'center', border: '1px solid #EAB15A' }}
-          >
-            <Typography.Text>Avatar</Typography.Text>
-          </Col>
-          <Col
-            span={4}
-            style={{ textAlign: 'center', border: '1px solid #EAB15A' }}
-          >
-            <Typography.Text>Name</Typography.Text>
-          </Col>
-          <Col
-            span={12}
-            style={{ textAlign: 'center', border: '1px solid #EAB15A' }}
-          >
-            <Typography.Text>Description</Typography.Text>
-          </Col>
-          {!Object.values(candidates).length && (
-            <Col
-              span={24}
-              style={{ textAlign: 'center', border: '1px solid #EAB15A' }}
-            >
-              <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
+    <Card bordered={false} className="table-container">
+      <Row gutter={[8, 13]}>
+        <Col span={24}>
+          <HeaderCandidateTable />
+        </Col>
+        {Object.entries(candidates).map(
+          ([address, { avatar, name, description }], idx) => (
+            <Col span={24} key={address + idx}>
+              <BodyCandidateTable
+                name={name}
+                avatar={avatar}
+                description={description}
+                index={idx}
+                address={address}
+              />
             </Col>
-          )}
-        </Row>
-      </Col>
-      {Object.values(candidates).map(({ avatar, name, description }, index) => {
-        return (
-          <Col span={24} key={name}>
-            <Row gutter={[0, 0]} align="middle">
-              <Col
-                span={4}
-                style={{
-                  height: 50,
-                  textAlign: 'center',
-                  border: '1px solid #EAB15A',
-                }}
-              >
-                <Typography.Text>{index + 1}.</Typography.Text>
-              </Col>
-              <Col
-                span={4}
-                style={{
-                  height: 50,
-                  textAlign: 'center',
-                  border: '1px solid #EAB15A',
-                }}
-              >
-                <Avatar size={40} src={avatar} />
-              </Col>
-              <Col
-                span={4}
-                style={{
-                  height: 50,
-                  textAlign: 'center',
-                  border: '1px solid #EAB15A',
-                }}
-              >
-                <Typography.Text>{name}</Typography.Text>
-              </Col>
-              <Col
-                span={12}
-                style={{
-                  height: 50,
-                  textAlign: 'center',
-                  border: '1px solid #EAB15A',
-                }}
-              >
-                <Typography.Text>{description}</Typography.Text>
-              </Col>
-            </Row>
+          ),
+        )}
+        {Object.keys(candidates).length === 0 && (
+          <Col span={24}>
+            <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
           </Col>
-        )
-      })}
-    </Row>
+        )}
+      </Row>
+    </Card>
   )
 }
