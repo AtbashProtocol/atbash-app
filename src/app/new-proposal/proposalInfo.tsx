@@ -143,6 +143,8 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
             showTime={{ showSecond: false }}
             placement="bottomRight"
             format={'MMM DD, YYYY HH:mm'}
+            style={{ width: '100%' }}
+            size="large"
           />
         </SpaceVertical>
       </Col>
@@ -158,6 +160,8 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
             showTime={{ showSecond: false }}
             placement="bottomRight"
             format={'MMM DD, YYYY HH:mm'}
+            style={{ width: '100%' }}
+            size="large"
           />
         </SpaceVertical>
       </Col>
