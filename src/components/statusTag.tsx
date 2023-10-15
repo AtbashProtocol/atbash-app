@@ -22,8 +22,8 @@ export default function StatusTag({
     if (isOwner) return { text: 'Owner', color: '#D4D8DE' }
     if (isVoted) return { text: 'Voted', color: '#7291E3' }
     if (isLive) return { text: 'Live', color: '#69CFBD' }
-    if (isGetResult) return { text: 'Need to Get Result', color: '#eab15a' }
-    else return { text: 'Can Read', color: 'blue' }
+    if (isGetResult) return { text: 'Needs Counting', color: '#FF8460' }
+    else return { text: 'Can Read', color: 'red' }
   }, [isOwner, isVoted, isLive, isGetResult])
 
   return (

@@ -80,9 +80,10 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
     <Row gutter={[20, 20]} justify={'center'}>
       {contextHolder}
       <Col span={24}>
-        <Typography.Title level={3}>Create Num Voter</Typography.Title>
+        <Typography.Title level={3}>Voter Settings</Typography.Title>
         <Typography.Text>
-          Enter the number of votes in the campaign
+          Add the Solana wallet addresses of the voters eligible to join the
+          campaign
         </Typography.Text>
       </Col>
       <Col span={24}>
@@ -90,7 +91,7 @@ export default function VoterAccepted({ onBack }: VoterAcceptedProp) {
           label={
             <Row>
               <Col>
-                <Typography.Text>Wallet Address Voter</Typography.Text>
+                <Typography.Text>Voter&rsquo;s Wallet Address</Typography.Text>
               </Col>
             </Row>
           }

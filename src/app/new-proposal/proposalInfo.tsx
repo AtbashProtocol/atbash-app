@@ -70,7 +70,7 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
       <Col span={24}>
         <Typography.Title level={3}>Create Campaign</Typography.Title>
         <Typography.Text>
-          Create a campaign name and description below
+          Describe what your campaign is about and set related parameters
         </Typography.Text>
       </Col>
       {/* Title */}
@@ -79,7 +79,7 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
           label={
             <Row justify="space-between">
               <Col>
-                <Typography.Text>Title</Typography.Text>
+                <Typography.Text>Campaign Title</Typography.Text>
               </Col>
               <Col>
                 <Typography.Text>
@@ -106,7 +106,7 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
           label={
             <Row justify="space-between">
               <Col>
-                <Typography.Text>Description</Typography.Text>
+                <Typography.Text>Campaign Description</Typography.Text>
               </Col>
               <Col>
                 <Typography.Text>
@@ -130,11 +130,43 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
         </SpaceVertical>
       </Col>
 
+      {/* Timeline */}
+      <Col span={12}>
+        <SpaceVertical label={<Typography.Text>Start Time</Typography.Text>}>
+          <DatePicker
+            placeholder="Select time"
+            suffixIcon={<IonIcon name="time-outline" />}
+            className="date-option"
+            onChange={(date) => onChangeTime('startTime', date?.valueOf() || 0)}
+            clearIcon={null}
+            value={startTime ? dayjs(startTime) : dayjs(Date.now())}
+            showTime={{ showSecond: false }}
+            placement="bottomRight"
+            format={'MMM DD, YYYY HH:mm'}
+          />
+        </SpaceVertical>
+      </Col>
+      <Col span={12}>
+        <SpaceVertical label={<Typography.Text>End Time</Typography.Text>}>
+          <DatePicker
+            placeholder="Select time"
+            suffixIcon={<IonIcon name="time-outline" />}
+            className="date-option"
+            onChange={(date) => onChangeTime('endTime', date?.valueOf() || 0)}
+            clearIcon={null}
+            value={endTime ? dayjs(endTime) : dayjs(Date.now())}
+            showTime={{ showSecond: false }}
+            placement="bottomRight"
+            format={'MMM DD, YYYY HH:mm'}
+          />
+        </SpaceVertical>
+      </Col>
+
       {/* Upload image */}
       <Col span={24}>
         <Row gutter={[12, 12]}>
           <Col span={24}>
-            <Typography.Text>Cover Photo</Typography.Text>
+            <Typography.Text>Campaign Banner</Typography.Text>
           </Col>
           <Col span={24} style={{ minHeight: 240 }}>
             {!image ? (
@@ -171,37 +203,6 @@ export default function ProposalInfo({ onNext }: ProposalInfoProp) {
         </Row>
       </Col>
 
-      {/* Timeline */}
-      <Col span={12}>
-        <SpaceVertical label={<Typography.Text>Start Time</Typography.Text>}>
-          <DatePicker
-            placeholder="Select time"
-            suffixIcon={<IonIcon name="time-outline" />}
-            className="date-option"
-            onChange={(date) => onChangeTime('startTime', date?.valueOf() || 0)}
-            clearIcon={null}
-            value={startTime ? dayjs(startTime) : dayjs(Date.now())}
-            showTime={{ showSecond: false }}
-            placement="bottomRight"
-            format={'MMM DD, YYYY HH:mm'}
-          />
-        </SpaceVertical>
-      </Col>
-      <Col span={12}>
-        <SpaceVertical label={<Typography.Text>End Time</Typography.Text>}>
-          <DatePicker
-            placeholder="Select time"
-            suffixIcon={<IonIcon name="time-outline" />}
-            className="date-option"
-            onChange={(date) => onChangeTime('endTime', date?.valueOf() || 0)}
-            clearIcon={null}
-            value={endTime ? dayjs(endTime) : dayjs(Date.now())}
-            showTime={{ showSecond: false }}
-            placement="bottomRight"
-            format={'MMM DD, YYYY HH:mm'}
-          />
-        </SpaceVertical>
-      </Col>
       <Col span={24} />
 
       {/* Action */}

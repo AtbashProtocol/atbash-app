@@ -19,7 +19,7 @@ export default function ListCandidate({ proposalAddress }: CandidateCardProps) {
       <Row gutter={[16, 16]}>
         <Col span={24}>
           <Typography.Title level={4} style={{ color: 'white' }}>
-            List Candidate
+            Campaign Candidate
           </Typography.Title>
         </Col>
         {candidates.map((publicKey) => {

@@ -27,7 +27,7 @@ const ProposalWinder = ({ proposalAddress }: { proposalAddress: string }) => {
     <div style={{ position: 'relative', zIndex: 1 }}>
       <Image
         alt=""
-        style={{ borderRadius: 8 }}
+        style={{ borderRadius: 8, aspectRatio: '16/9', objectFit: 'cover' }}
         src={winner.avatar}
         preview={false}
         width={128}

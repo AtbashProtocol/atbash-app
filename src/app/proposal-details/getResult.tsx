@@ -9,6 +9,7 @@ import { useProposalByAddress } from '@/providers/proposal.provider'
 
 const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
   const [open, setOpen] = useState(false)
+  const [isGetResult, setIsGetResult] = useState(false)
   const { proposalMetadata } = useMetadata(proposalAddress) || {
     proposalMetadata: { description: '' },
   }
@@ -26,9 +27,11 @@ const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
       setLoading(true)
       const result = await getResult()
       setResult(result)
+      setIsGetResult(true)
       message.success('Get result successfully!')
     } catch (er: any) {
       message.error(er.message)
+      setIsGetResult(false)
     } finally {
       setLoading(false)
     }
@@ -45,7 +48,7 @@ const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
         icon={<IonIcon name="leaf-outline" />}
         type="primary"
       >
-        Get Result
+        {isGetResult ? 'Results' : 'Get Results'}
       </Button>
       <Modal
         open={open}
@@ -56,7 +59,9 @@ const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
       >
         <Row gutter={[16, 16]}>
           <Col span={24} style={{ textAlign: 'center' }}>
-            <Typography.Title level={4}>Get result vote</Typography.Title>
+            <Typography.Title level={4}>
+              {isGetResult ? 'Results' : 'Get Results'}
+            </Typography.Title>
           </Col>
           <Col span={24} style={{ textAlign: 'center', marginBottom: 16 }}>
             <Typography.Text style={{ color: '#fff' }}>
@@ -74,21 +79,39 @@ const GetResult = ({ proposalAddress }: { proposalAddress: string }) => {
             </Col>
           ))}
 
-          <Col span={12} style={{ marginTop: 24 }}>
-            <Button block size="large" onClick={() => setOpen(false)}>
-              Back
-            </Button>
-          </Col>
-          <Col span={12} style={{ marginTop: 24 }}>
-            <Button
-              block
-              type="primary"
-              size="large"
-              onClick={onGetResult}
-              loading={loading}
-            >
-              Get result
-            </Button>
+          <Col span={24}>
+            <Row gutter={[16, 16]} justify="end">
+              {isGetResult ? (
+                <Col style={{ marginTop: 24 }}>
+                  <Button
+                    type="primary"
+                    size="large"
+                    onClick={() => setOpen(false)}
+                  >
+                    Close
+                  </Button>
+                </Col>
+              ) : (
+                <Fragment>
+                  <Col span={12} style={{ marginTop: 24 }}>
+                    <Button block size="large" onClick={() => setOpen(false)}>
+                      Back
+                    </Button>
+                  </Col>
+                  <Col span={12} style={{ marginTop: 24 }}>
+                    <Button
+                      block
+                      type="primary"
+                      size="large"
+                      onClick={onGetResult}
+                      loading={loading}
+                    >
+                      Get results
+                    </Button>
+                  </Col>
+                </Fragment>
+              )}
+            </Row>
           </Col>
         </Row>
       </Modal>

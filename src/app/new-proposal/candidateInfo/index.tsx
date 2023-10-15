@@ -91,9 +91,10 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
   return (
     <Row gutter={[20, 20]} justify={'center'}>
       <Col span={24}>
-        <Typography.Title level={3}>Create Num Candidate</Typography.Title>
+        <Typography.Title level={3}>Candidate Settings</Typography.Title>
         <Typography.Text>
-          Enter a list of candidates with a maximum of 8 candidate / 1 campaign
+          Add the list of candidates eligible to be elected (maximum 8
+          people/campaign)
         </Typography.Text>
       </Col>
       <Col span={24}>
@@ -101,7 +102,9 @@ export default function CandidateInfo({ onNext, onBack }: CandidateInfoProp) {
           label={
             <Row>
               <Col>
-                <Typography.Text>Wallet Address Candidate</Typography.Text>
+                <Typography.Text>
+                  Candidate&rsquo;s Wallet Address
+                </Typography.Text>
               </Col>
             </Row>
           }

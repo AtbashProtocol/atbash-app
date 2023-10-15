@@ -5,42 +5,38 @@ export default function Banner() {
   return (
     <Row className="banner" align="middle" justify="center">
       <Col sm={24} lg={22} style={{ position: 'relative', padding: '24px 0' }}>
-        <Row gutter={[0, 72]} align="middle" justify="center">
+        <Row gutter={[0, 36]} align="middle" justify="center">
           <Col span={24}>
             <Header />
           </Col>
-          <Col span={20} style={{ textAlign: 'center' }}>
-            <Typography.Title style={{ color: '#EAB15A' }}>
-              Cast Your Vote, Guard Your Privacy
-            </Typography.Title>
-            <Divider dashed style={{ borderColor: '#EAB15A' }} />
-            <Row gutter={[4, 4]} align="middle" justify="center">
-              <Col>
-                <Image preview={false} alt="" src="/icon-pyramid.svg" />
+          <Col span={24}>
+            <Row gutter={[0, 24]} align="middle" justify="center">
+              <Col span={20} style={{ textAlign: 'center' }}>
+                <Typography.Title
+                  style={{
+                    color: '#FFCD75',
+                    fontFamily: 'Cinzel',
+                    fontWeight: '700',
+                    fontFeatureSettings: 'clig off liga off',
+                    textTransform: 'uppercase',
+                  }}
+                >
+                  Cast Your Vote, Guard Your Privacy
+                </Typography.Title>
               </Col>
-              <Col xs={16} lg={12} xl={8}>
-                <Row gutter={[8, 8]}>
-                  <Col span={24}>
-                    <Typography.Text
-                      style={{ color: '#EAB15A', fontSize: '1.2rem' }}
-                    >
-                      The Future of Privacy E-Voting
-                    </Typography.Text>
-                  </Col>
-                  <Col span={24}>
-                    <Typography.Text
-                      style={{ color: '#EAB15A', fontSize: '1.2rem' }}
-                    >
-                      “Using ZK Proof technology”
-                    </Typography.Text>
-                  </Col>
-                </Row>
-              </Col>
-              <Col>
-                <Image alt="" src="/icon-pyramid.svg" preview={false} />
+              <Col xs={16} lg={12} xl={20} style={{ textAlign: 'center' }}>
+                <Typography.Text
+                  style={{
+                    color: '#FFCD75',
+                    fontSize: '1.3rem',
+                  }}
+                >
+                  The Future of Privacy E-Voting
+                </Typography.Text>
               </Col>
             </Row>
           </Col>
+          <Col span={24} />
         </Row>
       </Col>
     </Row>
