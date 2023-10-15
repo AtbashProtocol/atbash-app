@@ -41,7 +41,7 @@ export default function ProposalDetails() {
                   title: (
                     <>
                       <IonIcon name="home-outline" />
-                      <span>Home</span>
+                      <span>Campaign Dashboard</span>
                     </>
                   ),
                 },

@@ -61,7 +61,7 @@ export default function NewProposal() {
                   title: (
                     <>
                       <IonIcon name="home-outline" />
-                      <span>Home</span>
+                      <span>Campaign Dashboard</span>
                     </>
                   ),
                 },
@@ -81,7 +81,7 @@ export default function NewProposal() {
               type="primary"
               icon={<IonIcon name="arrow-back-outline" />}
             >
-              Back Home
+              Back
             </Button>
           </Col>
           <Col span={16}>
@@ -89,9 +89,9 @@ export default function NewProposal() {
               <Row gutter={[32, 32]}>
                 <Col span={24}>
                   <Steps size="small" current={step} direction="horizontal">
-                    <Steps.Step title="Proposal Info" />
-                    <Steps.Step title="Candidate Info" />
-                    <Steps.Step title="Voters Accepted" />
+                    <Steps.Step title="Create Campaign" />
+                    <Steps.Step title="Candidate Settings" />
+                    <Steps.Step title="Voter Settings" />
                   </Steps>
                 </Col>
                 <Col span={24}>{processInit}</Col>

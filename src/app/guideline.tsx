@@ -25,15 +25,17 @@ const Guideline = () => {
               items={[
                 {
                   title: 'Select campaign',
-                  description: 'This is a description.',
+                  description: 'Choose the campaign you want to vote for',
                 },
                 {
                   title: 'Choose Candidate',
-                  description: 'This is a description.',
+                  description:
+                    'Pick your favorite candidate from the campaign list',
                 },
                 {
                   title: 'Submit',
-                  description: 'This is a description.',
+                  description:
+                    'Click on the “Vote” button to submit your choice',
                 },
               ]}
             />

@@ -60,7 +60,7 @@ const TimeCountDown = ({ endTime }: TimeCountDownProps) => {
   if (endTime < currentTime)
     return (
       <TimeTag>
-        <Typography.Text style={{ color: 'black' }}>Expired</Typography.Text>
+        <Typography.Text style={{ color: 'black' }}>Ended</Typography.Text>
       </TimeTag>
     )
 
